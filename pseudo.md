@@ -6,10 +6,10 @@
       <!-- - container should initialize with static intro message and start button -->
     <!-- 2.1.2. Save container and start button as js variables -->
     <!-- 2.1.3. Initialize event listener for button click -->
-      - on button click; shift to the character select screen
-        - Change message
-        - Add character carosel (bootstrap)
-        - Change button from start the game to - Step into Arena
+      <!-- - on button click; shift to the character select screen -->
+        <!-- Change message -->
+        <!-- Add character carosel (bootstrap) -->
+        <!-- Change button from start the game to - Step into Arena -->
     2.1.4 Create init function that holds this state
   2.2 Character Select 
     2.2.1. Create player-characters file
