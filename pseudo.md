@@ -1,11 +1,15 @@
 1. Set up framework using GA's game-dev commented sections
 2. Create Game Start + Player Select Screen
   2.1 Game Start
-    2.1.1. Create container grid item for all in-game components
-      - container should initialize with static intro message and start button
-    2.1.2. Save container and start button as js variables
-    2.1.3. Initialize event listener for button click
+    <!-- 2.1.1. Create container grid item for all in-game components -->
+      <!-- - initial start screen will actually be a flex item; will change to grid after character select. -->
+      <!-- - container should initialize with static intro message and start button -->
+    <!-- 2.1.2. Save container and start button as js variables -->
+    <!-- 2.1.3. Initialize event listener for button click -->
       - on button click; shift to the character select screen
+        - Change message
+        - Add character carosel (bootstrap)
+        - Change button from start the game to - Step into Arena
     2.1.4 Create init function that holds this state
   2.2 Character Select 
     2.2.1. Create player-characters file
