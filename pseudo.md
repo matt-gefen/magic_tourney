@@ -31,27 +31,27 @@
           - # rounds to charge
           - damage
           - additional effect
+
+What are the functions that relate to each character?
+- Seems like I need a deal damage function
+ - useStandardAttack
+   - determine damage
+   - subtract damage from enemy
+ - useDefense
+ - useSpecial
+   - basically the same as useUltimate
+ - useUltimate
+   - Determine damage
+   - subtract damage from enemy
+   - Determine buff
+   - enact buff
+   - Determine heal
+   - enact heal
+
       2.2.3. Create div/button that represents a character selection option in the main container
-        - Styling thought - this could be done with a bootstrap caurosel
+        <!-- - Styling thought - this could be done with a bootstrap caurosel -->
         - Display description on hover
 
 
----- Create boss-characters file
+---- Create boss-characters file - instead just use one characters js
       --- Create objects for each boss character (litch, slime, beholder, redhat) that stores:
-        - max-hp
-        - max-ap
-        - current-hp
-        - current-ap
-        - standard-attack (this may need to be a sub-object)
-          - name
-          - damage
-        - shield
-          - damage reduced
-          - additional effect #
-        - special 
-          - damage
-          - additional effect 
-        - ultimate
-          - # rounds to charge
-          - damage
-          - additional effect

@@ -1,8 +1,14 @@
+import * as characters from './characters.js'
+
 init()
 
 // constants
 
 // variables
+let selectedCharacter = null
+let selectedBoss = null
+let turn = null
+let round = null
 
 // cached element references
 const mainContainer = document.querySelector('.container')
@@ -18,6 +24,8 @@ startButton.addEventListener("click", function(evt) {
   playerSelect.removeAttribute('hidden')
 
 })
+
+console.log(characters.playerCharacters)
 
 // functions
 function init() {

@@ -1,10 +1,10 @@
-const playerCharaceters = [
+const playerCharacters = [
   {
     name: 'Mage',
     maxHp: 100,
     maxAp: 4,
-    currentHp: this.maxHp,
-    currentAp: this.maxAp,
+    currentHp: 100,
+    currentAp: 4,
     ableToMove: true,
     standardAttack: {
       name: 'Magic Missle',
@@ -28,3 +28,7 @@ const playerCharaceters = [
     }
   }
 ]
+
+// console.log(playerCharacters[0].maxAp)
+
+export {playerCharacters}
