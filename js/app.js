@@ -9,6 +9,7 @@ let turn = null
 let round = null
 
 // cached element references
+const bodyElement = document.querySelector('body')
 const startContainer = document.querySelector('.start-container')
 const gameContainter = document.querySelector('.game-container')
 const mainMessage = document.querySelector('#main-message')
@@ -33,6 +34,7 @@ selectButton.addEventListener("click", function(evt) {
   gameContainter.removeAttribute('hidden')
   gameMessage.removeAttribute('hidden')
   gameMessage.innerText = 'Match 1!'
+  bodyElement.style.flexDirection = 'column'
 
 })
 

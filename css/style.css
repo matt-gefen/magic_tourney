@@ -28,6 +28,32 @@ body {
 .player-selection {
   margin: 10px;
 }
+.game-container {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1.2fr 0.8fr;
+  grid-template-rows: 0.7fr 1.6fr 0.7fr 0.6fr 1.4fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "restart sprite sprite ."
+    ". sprite sprite ."
+    ". game-text game-text boss-hp"
+    "game-info game-info game-info game-info"
+    "play-options play-options play-options play-options";
+}
+
+.sprite { grid-area: sprite; }
+
+.restart { grid-area: restart; }
+
+.game-text { grid-area: game-text; }
+
+.game-info { grid-area: game-info; }
+
+.play-options { grid-area: play-options; }
+
+.boss-hp { grid-area: boss-hp; }
+
 
 /* .carousel-inner > .item > img {
   height: 200px;
