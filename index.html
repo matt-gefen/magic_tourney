@@ -12,20 +12,20 @@
   <title>Magic Tourney</title>
 </head>
 <body>
-  <main class='container'>
+  <main class='start-container'>
       <h1 id='main-message'>Welcome to Magic Tourney</h1>
 
       <div id="carouselExampleControls" class="carousel slide player-selection" data-ride="carousel" data-interval="false" hidden>
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div class="carousel-item active" id = 'mage'>
             <img src="images/mage-demo-1.png" class="d-block w-100" alt="wizard">
           </div>
           <!-- <div class="carousel-item">
             <img src="https://picsum.photos/203/300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://picsum.photos/204/300" class="d-block w-100" alt="...">
           </div> -->
+          <div class="carousel-item" id='warlock'>
+            <img src="https://picsum.photos/204/300" class="d-block w-100" alt="...">
+          </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -41,6 +41,9 @@
 
       <button id = 'start' type="button" class="btn btn-primary btn-lg">Start The Game</button>
       <button id = 'select' type="button" class="btn btn-primary btn-lg" hidden>Step Into Arena</button>
+  </main>
+  <h1 class='game-message' hidden></h1>
+  <main class='game-container' hidden>
   </main>
 </body>
 </html>

@@ -1,5 +1,6 @@
 const playerCharacters = [
   {
+    id: 'mage',
     name: 'Mage',
     maxHp: 100,
     maxAp: 4,
