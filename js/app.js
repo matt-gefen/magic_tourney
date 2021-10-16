@@ -22,21 +22,7 @@ let activeCarItem = document.querySelector('.active')
 init()
 // event listeners
 startButton.addEventListener("click", startClick)
-selectButton.addEventListener("click", function(evt) {
-  activeCarItem = document.querySelector('.active')
-  const charId = activeCarItem.id
-  characters.playerCharacters.forEach((i) => {
-    if (i.id === charId) {
-      selectedCharacter = i
-    }
-  })
-  startContainer.hidden = true
-  gameContainter.removeAttribute('hidden')
-  gameMessage.removeAttribute('hidden')
-  gameMessage.innerText = 'Match 1!'
-  bodyElement.style.flexDirection = 'column'
-
-})
+selectButton.addEventListener("click", selectCharacter )
 
 // functions
 function init() {
@@ -49,4 +35,19 @@ function startClick(evt) {
   playerSelect.removeAttribute('hidden')
   selectButton.removeAttribute('hidden')
   startButton.hidden = true
+}
+
+function selectCharacter(evt) {
+  activeCarItem = document.querySelector('.active')
+  const charId = activeCarItem.id
+  characters.playerCharacters.forEach((i) => {
+    if (i.id === charId) {
+      selectedCharacter = i
+    }
+  })
+  startContainer.hidden = true
+  gameContainter.removeAttribute('hidden')
+  gameMessage.removeAttribute('hidden')
+  gameMessage.innerText = 'Match 1!'
+  bodyElement.style.flexDirection = 'column'
 }

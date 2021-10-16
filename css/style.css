@@ -30,29 +30,64 @@ body {
 }
 .game-container {
   display: grid;
+  border: 2px solid black;
+  /* padding: 2px; */
+  height: 80%;
+  width: 80%;
   grid-template-columns: 0.8fr 1.2fr 1.2fr 0.8fr;
   grid-template-rows: 0.7fr 1.6fr 0.7fr 0.6fr 1.4fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "restart sprite sprite ."
-    ". sprite sprite ."
-    ". game-text game-text boss-hp"
+    ". sprite sprite boss-hp"
+    ". game-text game-text ."
     "game-info game-info game-info game-info"
     "play-options play-options play-options play-options";
 }
 
-.sprite { grid-area: sprite; }
+.sprite { 
+  grid-area: sprite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.restart { grid-area: restart; }
+.restart { 
+  grid-area: restart; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.game-text { grid-area: game-text; }
+.game-text { 
+  grid-area: game-text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.game-info { grid-area: game-info; }
+.game-info { 
+  grid-area: game-info;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.play-options { grid-area: play-options; }
+.play-options { 
+  grid-area: play-options;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.boss-hp { grid-area: boss-hp; }
+.boss-hp {
+  grid-area: boss-hp;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content:flex-start;
+  align-items: center;
+}
 
 
 /* .carousel-inner > .item > img {
