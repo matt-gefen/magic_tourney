@@ -6,21 +6,38 @@ import * as characters from './characters.js'
 let selectedCharacter = null
 let selectedBoss = null
 let turn = null
+let turnText = null
 let round = null
 
-// cached element references
+// cached element references ------
+// start and character select
 const bodyElement = document.querySelector('body')
 const startContainer = document.querySelector('.start-container')
-const gameContainter = document.querySelector('.game-container')
 const mainMessage = document.querySelector('#main-message')
-const gameMessage = document.querySelector('.game-message')
 const startButton = document.querySelector('#start')
 const selectButton = document.querySelector('#select')
-const restartButton = document.querySelector('.restart')
+// const restartButton = document.querySelector('.restart')
 const playerSelect = document.querySelector('.player-selection')
 let activeCarItem = document.querySelector('.active')
 
+// main game elements
+const gameMessage = document.querySelector('.game-message')
+const gameContainter = document.querySelector('.game-container')
+const sprite = document.querySelector('.sprite')
+const gameText = document.querySelector('.game-text')
+const healthNumber = document.querySelector('#health-number')
+const apNumber = document.querySelector('#ap-number')
+const bossHealthNumber = document.querySelector('#boss-health-number')
+const turnNumber = document.querySelector('#turn-number')
+const standardButton = document.querySelector('#standard-att')
+const defenseButton = document.querySelector('#defense')
+const specialButton = document.querySelector('#special-att')
+const ultButton = document.querySelector('#ultimate')
+
+// initialize the game --
 init()
+
+
 // event listeners --------
 // start game
 startButton.addEventListener("click", startClick)
@@ -31,8 +48,11 @@ selectButton.addEventListener("click", selectCharacter )
 function init() {
   selectedCharacter = null
   round = 1
+  turn = 1
+  turnText = `${turn}/10`
   gameMessage.innerText = `Match ${round}!`
   selectedBoss = characters.bossCharacters[0]
+  sprite.innerText = selectedBoss.name
 }
 
 function startClick(evt) {
@@ -55,4 +75,16 @@ function selectCharacter(evt) {
   gameContainter.removeAttribute('hidden')
   gameMessage.removeAttribute('hidden')
   bodyElement.style.flexDirection = 'column'
+  renderCharacter()
+}
+
+function renderCharacter() {
+  healthNumber.innerText = selectedCharacter.currentHp
+  apNumber.innerText = selectedCharacter.currentAp
+  bossHealthNumber.innerText = selectedBoss.currentHp
+  turnNumber.innerText = turnText
+  standardButton.innerText = selectedCharacter.standardAttack.name
+  defenseButton.innerText = selectedCharacter.defense.name
+  specialButton.innerText = selectedCharacter.specialAttack.name
+  ultButton.innerText = selectedCharacter.ultimate.name
 }

@@ -3,7 +3,7 @@ const playerCharacters = [
     id: 'mage',
     name: 'Mage',
     maxHp: 100,
-    currentHp: 100,
+    currentHp: 75,
     currentAp: 2,
     ableToMove: true,
     standardAttack: {

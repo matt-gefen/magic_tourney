@@ -48,9 +48,18 @@
     <div class="sprite">Sprite</div>
     <div class="game-text">The battle begins!</div>
     <div class="game-info">
-      <div id='health'>Health: 100</div>
-      <div id='ap'>Ap: 4</div>
-      <div id='round'>Round: 1/10</div>
+      <div id='health'>
+        <span class='info'>Health:</span>
+        <span id='health-number'></span>
+      </div>
+      <div id='ap'>
+        <span class='info'>Ap:</span>
+        <span id='ap-number'></span>
+      </div>
+      <div id='turn'>
+        <span class='info'>Turn:</span> 
+        <span id='turn-number'>1/10</span>
+      </div>
     </div>
     <div class="play-options">
       <button type="button" id = 'standard-att' class="btn btn-success">Standard</button>
@@ -58,7 +67,10 @@
       <button type="button" id = 'special-att' class="btn btn-success">Special</button>
       <button type="button" id = 'ultimate' class="btn btn-success">Ultimate</button>
     </div>
-    <div class="boss-hp">1000</div>
+    <div class="boss-hp">
+      <span class='info'>Enemy Health</span>
+      <span id='boss-health-number'></span>
+    </div>
   </main>
 </body>
 </html>
