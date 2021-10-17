@@ -43,6 +43,31 @@ init()
 startButton.addEventListener("click", startClick)
 // select character
 selectButton.addEventListener("click", selectCharacter )
+// attack listener
+gameContainter.addEventListener("click", function(evt){
+  let buttonClicked = evt.target
+  let moveId = buttonClicked.id
+  if (buttonClicked.classList.contains('btn')) {
+    // run boss select move here
+    if (moveId === 'standard-att') {
+      // renderBossMove + renderPlayerMove
+      renderPlayerMove(moveId)
+    }
+    else if (moveId === 'defense') {
+      // renderBossMove + renderPlayerMove
+      renderPlayerMove(moveId)
+    }
+    else if (moveId === 'special-att') {
+      // renderBossMove + renderPlayerMove
+      renderPlayerMove(moveId)
+    }
+    else if (moveId === 'ultimate') {
+      // renderBossMove + renderPlayerMove
+      renderPlayerMove(moveId)
+    }
+  }
+})
+
 
 // functions --------
 function init() {
@@ -75,10 +100,10 @@ function selectCharacter(evt) {
   gameContainter.removeAttribute('hidden')
   gameMessage.removeAttribute('hidden')
   bodyElement.style.flexDirection = 'column'
-  renderCharacter()
+  renderGame()
 }
 
-function renderCharacter() {
+function renderGame() {
   healthNumber.innerText = selectedCharacter.currentHp
   apNumber.innerText = selectedCharacter.currentAp
   bossHealthNumber.innerText = selectedBoss.currentHp
@@ -87,4 +112,13 @@ function renderCharacter() {
   defenseButton.innerText = selectedCharacter.defense.name
   specialButton.innerText = selectedCharacter.specialAttack.name
   ultButton.innerText = selectedCharacter.ultimate.name
+}
+
+function renderPlayerMove(moveId) {
+  if (moveId === 'standard-att') {
+    selectedBoss.currentHp -= selectedCharacter.standardAttack.damage
+    bossHealthNumber.innerText = selectedBoss.currentHp
+    gameText.innerText = `${selectedCharacter.standardAttack.description} dealing ${selectedCharacter.standardAttack.damage} damage.`
+  }
+
 }

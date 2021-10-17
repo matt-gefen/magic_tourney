@@ -20,7 +20,9 @@ const playerCharacters = [
     },
     specialAttack: {
       name: 'Ray of Frost',
-      // effect: ableToMove for boss char set = false
+      effect: function(char) {
+        char.ableToMove = false
+      },
       apCost: 2,
       description: 'You generate an itense blast of freezing air, stopping your foe in their tracks.'
     },
@@ -54,7 +56,9 @@ const bossCharacters = [
     },
     specialAttack: {
       name: 'Paralyzing Gaze',
-      // effect: ableToMove for boss char set = false
+      effect: function(char) {
+        char.ableToMove = false
+      },
       apCost: 2,
       description: 'The litch locks eyes with you and you feel your soul grow cold. You are unable to move this turn.'
     },
