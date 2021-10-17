@@ -51,7 +51,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: black solid 1px;
+  /* border: black solid 1px; */
   border-radius: 50%;
   height: 100%;
   margin-top: 10px;

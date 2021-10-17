@@ -8,6 +8,8 @@ let selectedBoss = null
 let turn = null
 let turnText = null
 let round = null
+let moveId = null
+let bossMoveId = null
 
 // cached element references ------
 // start and character select
@@ -46,25 +48,14 @@ selectButton.addEventListener("click", selectCharacter )
 // attack listener
 gameContainter.addEventListener("click", function(evt){
   let buttonClicked = evt.target
-  let moveId = buttonClicked.id
+  moveId = buttonClicked.id
+  console.log(moveId)
   if (buttonClicked.classList.contains('btn')) {
-    // run boss select move here
-    if (moveId === 'standard-att') {
-      // renderBossMove + renderPlayerMove
-      renderPlayerMove(moveId)
-    }
-    else if (moveId === 'defense') {
-      // renderBossMove + renderPlayerMove
-      renderPlayerMove(moveId)
-    }
-    else if (moveId === 'special-att') {
-      // renderBossMove + renderPlayerMove
-      renderPlayerMove(moveId)
-    }
-    else if (moveId === 'ultimate') {
-      // renderBossMove + renderPlayerMove
-      renderPlayerMove(moveId)
-    }
+    // determine boss move
+    // determine order - conditional render move
+    // render playerMove
+    renderPlayerMove()
+    // renderBossMove()
   }
 })
 
@@ -114,11 +105,51 @@ function renderGame() {
   ultButton.innerText = selectedCharacter.ultimate.name
 }
 
-function renderPlayerMove(moveId) {
+function renderMove(char, enemy, moveId) {
+  // needs to add in AP cost
   if (moveId === 'standard-att') {
-    selectedBoss.currentHp -= selectedCharacter.standardAttack.damage
-    bossHealthNumber.innerText = selectedBoss.currentHp
-    gameText.innerText = `${selectedCharacter.standardAttack.description} dealing ${selectedCharacter.standardAttack.damage} damage.`
+    if (enemy.shield === true) {
+      enemy.shield = false
+      let reducedDamage = char.standardAttack.damage - (char.standardAttack.damage * enemy.defense.damageReduction)
+      enemy.currentHp -= reducedDamage
+      gameText.innerText = `${char.standardAttack.description}. Defences reduce the impact to ${reducedDamage} damage.`
+
+    }
+    else {
+      enemy.currentHp -= char.standardAttack.damage
+      gameText.innerText = `${char.standardAttack.description} dealing ${char.standardAttack.damage} damage.`
+    }
+    bossHealthNumber.innerText = enemy.currentHp
   }
 
+  else if (moveId === 'defense') {
+    char.shield = true
+    gameText.innerText = `${char.defense.description}`
+  }
+
+  else if (moveId === 'special-att') {
+    char.specialAttack.effect(enemy)
+    gameText.innerText = `${char.specialAttack.description}`
+  }
+  else if (moveId === 'ultimate') {
+    if (enemy.shield === true) {
+      enemy.shield = false
+      enemy.currentHp -= char.ultimate.damage - (char.ultimate.damage * enemy.defense.damageReduction)
+      gameText.innerText = `${char.ultimate.description}. Defences reduce the impact to ${char.ultimate.damage} damage.`
+    }
+    else {
+      enemy.currentHp -= char.ultimate.damage
+      gameText.innerText = `${char.ultimate.description} dealing ${char.ultimate.damage} damage.`
+    }
+    bossHealthNumber.innerText = enemy.currentHp
+  }
+}
+
+function renderPlayerMove() {
+  renderMove(selectedCharacter,selectedBoss,moveId)
+}
+
+function renderBossMove() {
+  // replace moveId with the select Boss move function
+  renderMove(selectedBoss,selectedCharacter,moveId)
 }

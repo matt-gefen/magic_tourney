@@ -6,6 +6,8 @@ const playerCharacters = [
     currentHp: 75,
     currentAp: 2,
     ableToMove: true,
+    damageNull: false,
+    shield: false,
     standardAttack: {
       name: 'Magic Missle',
       apCost: 0,
@@ -24,13 +26,13 @@ const playerCharacters = [
         char.ableToMove = false
       },
       apCost: 2,
-      description: 'You generate an itense blast of freezing air, stopping your foe in their tracks.'
+      description: 'You generate an itense blast of freezing air, stopping your foe in their tracks. They cannot move next turn.'
     },
     ultimate: {
       name: 'Meteor',
       ap: 4,
       damage: 35,
-      description: 'You focus all of your arcane strength and conjur a massive meteor from the aether. You send it hurling towards your opponent.'
+      description: 'You focus all of your arcane strength and conjur a massive meteor from the aether. You send it hurling towards your opponent'
     }
   }
 ]
@@ -42,6 +44,8 @@ const bossCharacters = [
     currentHp: 150,
     currentAp: 2,
     ableToMove: true,
+    damageNull: false,
+    shield: true,
     standardAttack: {
       name: 'Finger of Death',
       apCost: 0,
