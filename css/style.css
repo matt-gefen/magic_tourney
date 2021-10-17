@@ -32,15 +32,15 @@ body {
   display: grid;
   border: 2px solid black;
   /* padding: 2px; */
-  height: 80%;
-  width: 80%;
+  height: 90%;
+  width: 90%;
   grid-template-columns: 0.8fr 1.2fr 1.2fr 0.8fr;
   grid-template-rows: 0.7fr 1.6fr 0.7fr 0.6fr 1.4fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "restart sprite sprite ."
     ". sprite sprite boss-hp"
+    ". sprite sprite ."
     ". game-text game-text ."
     "game-info game-info game-info game-info"
     "play-options play-options play-options play-options";
@@ -51,14 +51,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: black solid 1px;
+  border-radius: 50%;
+  height: 100%
 }
 
-.restart { 
+/* .restart { 
   grid-area: restart; 
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .game-text { 
   grid-area: game-text;
@@ -72,6 +75,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+}
+
+#health {
+  border: solid black 1px;
+  padding: 10px;
+}
+
+#ap {
+  border: solid black 1px;
+  padding: 10px;
+}
+
+#round {
+  border: solid black 1px;
+  padding: 10px;
 }
 
 .play-options { 
@@ -85,7 +104,7 @@ body {
   grid-area: boss-hp;
   display: flex;
   /* flex-direction: column; */
-  justify-content:flex-start;
+  justify-content:center;
   align-items: center;
 }
 

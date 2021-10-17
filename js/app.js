@@ -16,17 +16,23 @@ const mainMessage = document.querySelector('#main-message')
 const gameMessage = document.querySelector('.game-message')
 const startButton = document.querySelector('#start')
 const selectButton = document.querySelector('#select')
+const restartButton = document.querySelector('.restart')
 const playerSelect = document.querySelector('.player-selection')
 let activeCarItem = document.querySelector('.active')
 
 init()
-// event listeners
+// event listeners --------
+// start game
 startButton.addEventListener("click", startClick)
+// select character
 selectButton.addEventListener("click", selectCharacter )
 
-// functions
+// functions --------
 function init() {
   selectedCharacter = null
+  round = 1
+  gameMessage.innerText = `Match ${round}!`
+  selectedBoss = characters.bossCharacters[0]
 }
 
 function startClick(evt) {
@@ -48,6 +54,5 @@ function selectCharacter(evt) {
   startContainer.hidden = true
   gameContainter.removeAttribute('hidden')
   gameMessage.removeAttribute('hidden')
-  gameMessage.innerText = 'Match 1!'
   bodyElement.style.flexDirection = 'column'
 }

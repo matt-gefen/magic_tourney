@@ -43,12 +43,21 @@
       <button id = 'select' type="button" class="btn btn-primary btn-lg" hidden>Step Into Arena</button>
   </main>
   <h1 class='game-message' hidden></h1>
+  <!-- <div class="restart" hidden>restart button</div> -->
   <main class="game-container" hidden>
     <div class="sprite">Sprite</div>
-    <div class="restart">restart button</div>
-    <div class="game-text">You did the thing! X Damage!</div>
-    <div class="game-info">health, ap, round</div>
-    <div class="play-options">standard barrier special ult</div>
+    <div class="game-text">The battle begins!</div>
+    <div class="game-info">
+      <div id='health'>Health: 100</div>
+      <div id='ap'>Ap: 4</div>
+      <div id='round'>Round: 1/10</div>
+    </div>
+    <div class="play-options">
+      <button type="button" id = 'standard-att' class="btn btn-success">Standard</button>
+      <button type="button" id = 'defense' class="btn btn-success">Defense</button>
+      <button type="button" id = 'special-att' class="btn btn-success">Special</button>
+      <button type="button" id = 'ultimate' class="btn btn-success">Ultimate</button>
+    </div>
     <div class="boss-hp">1000</div>
   </main>
 </body>
