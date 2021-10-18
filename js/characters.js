@@ -41,7 +41,7 @@ const bossCharacters = [
     id: 'litch',
     name: 'Mitch the Litch',
     maxHp: 100,
-    currentHp: 100,
+    currentHp: 15,
     currentAp: 2,
     ableToMove: true,
     damageNull: false,

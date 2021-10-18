@@ -15,6 +15,7 @@ let bossMoveId = null
 let reducedDamage = null
 let roundWinner = null
 let gameWinner = null
+let turnHappening = false
 
 // cached element references ------
 // start and character select
@@ -54,13 +55,18 @@ selectButton.addEventListener("click", selectCharacter )
 gameContainter.addEventListener("click", function(evt){
   let buttonClicked = evt.target
   moveId = buttonClicked.id
-  if (buttonClicked.classList.contains('btn-success')) {
+  if (buttonClicked.classList.contains('btn-success') && turnHappening === false) {
     // determine boss move
     // determine order - conditional render move
     // render playerMove
+    turnHappening = true
     playGame()
+    if (!roundWinner) {
+      setTimeout(turnOver, 4000)
+    }
+
   }
-  else if ((buttonClicked.classList.contains('btn-secondary')) ) {
+  else if ((buttonClicked.classList.contains('btn-secondary')  && turnHappening === false ) ) {
     gameText.innerText = 'You do not have enough AP for magic of that caliber!'
   }
 })
@@ -75,6 +81,7 @@ function init() {
   gameMessage.innerText = `Match ${round}!`
   selectedBoss = characters.bossCharacters[0]
   sprite.innerText = selectedBoss.name
+  roundWinner = false
 }
 
 function startClick(evt) {
@@ -236,51 +243,80 @@ function turnOrder() {
 function playGame() {
   selectBossMove()
   turnOrder()
-
-  if (selectedCharacter.ableToMove === false && selectedBoss.ableToMove === false) {
-    gameText.innerText = `Neither of you can move!`
-    selectedCharacter.ableToMove = true
-    selectedBoss.ableToMove = true
-    turn += 1
-  }
-
-  else if (selectedCharacter.ableToMove === false) {
-    gameText.innerText = `You cannot move due to ${selectedBoss.specialAttack.name}`
-    selectedCharacter.ableToMove = true
-    setTimeout(renderBossMove, 3000)
-    turn += 1
-  }
-
-  else if (selectedBoss.ableToMove === false) {
-    gameText.innerText = `${selectedBoss.name} cannot move due to ${selectedCharacter.specialAttack.name}`
-    selectedBoss.ableToMove = true
-    setTimeout(renderPlayerMove, 3000)
-    turn += 1
-  }
-
-  else if (turnOrderNum === 1) {
-    renderPlayerMove()
-    setTimeout(renderBossMove, 3000)
-    turn += 1
-  }
-  else if (turnOrderNum === 2) {
-    renderBossMove()
-    setTimeout(renderPlayerMove, 3000)
-    turn += 1
-  }
-  selectedCharacter.currentAp += 1
-  selectedBoss.currentAp += 1
   getRoundWinner()
+  console.log(roundWinner)
+  if (roundWinner === false) {
+    if (selectedCharacter.ableToMove === false && selectedBoss.ableToMove === false) {
+      gameText.innerText = `Neither of you can move!`
+      selectedCharacter.ableToMove = true
+      selectedBoss.ableToMove = true
+      turn += 1
+    }
+
+    else if (selectedCharacter.ableToMove === false) {
+      gameText.innerText = `You cannot move due to ${selectedBoss.specialAttack.name}`
+      selectedCharacter.ableToMove = true
+      setTimeout(renderBossMove, 3000)
+      turn += 1
+      getRoundWinner()
+    }
+
+    else if (selectedBoss.ableToMove === false) {
+      gameText.innerText = `${selectedBoss.name} cannot move due to ${selectedCharacter.specialAttack.name}`
+      selectedBoss.ableToMove = true
+      setTimeout(renderPlayerMove, 3000)
+      turn += 1
+      getRoundWinner()
+    }
+
+    else if (turnOrderNum === 1) {
+      renderPlayerMove()
+      getRoundWinner()
+      if (roundWinner === false) {
+        setTimeout(renderBossMove, 3000)
+      }
+      turn += 1
+      getRoundWinner
+    }
+    else if (turnOrderNum === 2) {
+      renderBossMove()
+      getRoundWinner()
+      if (roundWinner === false) {
+        setTimeout(renderPlayerMove, 3000)
+      }
+      turn += 1
+      getRoundWinner()
+    }
+    selectedCharacter.currentAp += 1
+    selectedBoss.currentAp += 1
+  }
+    
+  }
+
+  function getRoundWinner() {
+    if (selectedCharacter.currentHp <= 0) {
+      gameText.innerText = `The ${selectedBoss.name} is victorious! Try again the next tourney!`
+      roundWinner = true
+    }
+    else if (selectedBoss.currentHp <= 0) {
+      gameText.innerText = `The ${selectedCharacter.name} prevails, defeating ${selectedBoss.name}`
+      roundWinner = true
+
+    }
+    else if (turn > 10) {
+      if (selectedCharacter.currentHp > selectedBoss.currentHp) {
+        gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP moves to the next round!`
+        roundWinner = true
+
+      }
+      else {
+        gameText.innerText = `After 10 round, the ${selectedBoss.name} is victorious! Try again the next tourney!`
+        roundWinner = true
+      }
+    }
+
 }
 
-function getRoundWinner() {
-  if (turn > 10) {
-    if (selectedCharacter.currentHp > selectedBoss.currentHp) {
-      gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP moves to the next round!`
-      round += 1
-    }
-    else {
-      gameText.innerText = `After 10 round, the ${selectedBoss.name} is victorious! Try again the next tourney!`
-    }
-  }
+function turnOver() {
+  turnHappening = false
 }
