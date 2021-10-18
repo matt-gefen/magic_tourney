@@ -149,6 +149,7 @@ function renderMove(char, enemy, moveId) {
 
   else if (moveId === 'special-att') {
     if (enemy.shield === true) {
+      enemy.shield = false
       gameText.innerText = `${enemy.name}'s defenses absorb the the effect of ${char.specialAttack.name}.`
     }
     else {
