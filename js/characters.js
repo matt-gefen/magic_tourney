@@ -72,10 +72,10 @@ const bossCharacters = [
     },
     ultimate: {
       id: 'ultimate',
-      name: 'Power Word Kill',
+      name: 'Psychic Scream',
       ap: 0,
       damage: 50,
-      description: 'You focus all of your arcane strength and conjur a massive meteor from the aether. You send it hurling towards your opponent.'
+      description: 'The undead sorcerer unhinges his boney jaw in a silent scream. Though not audible, the scream tears at your mind'
     }
   }
 ]

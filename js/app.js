@@ -190,11 +190,12 @@ function renderBossMove() {
 
 function selectBossIndex() {
   let indexNum = 0
-  if (turn <= 4 || selectedBoss.ultimateUsed === true) {
+  if (turn < 4 || selectedBoss.ultimateUsed === true) {
     indexNum = Math.floor(Math.random() * (2 + 1))
   }
   else  {
     indexNum = Math.floor(Math.random() * (3 - 0 + 1))
+    console.log('ultimate available')
   }
   bossMoveId = moveOptions[indexNum]
 }
@@ -229,6 +230,7 @@ function turnOrder() {
 
 function playGame() {
   selectBossMove()
+  console.log(bossMoveId)
   turnOrder()
   if (selectedCharacter.ableToMove === false) {
     gameText.innerText = `You cannot move due to ${selectedBoss.specialAttack.name}`
@@ -253,4 +255,8 @@ function playGame() {
   turn += 1
   selectedCharacter.currentAp += 1
   selectedBoss.currentAp += 1
+}
+
+function getWinner() {
+  return
 }
