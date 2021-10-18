@@ -55,7 +55,7 @@ selectButton.addEventListener("click", selectCharacter )
 gameContainter.addEventListener("click", function(evt){
   let buttonClicked = evt.target
   moveId = buttonClicked.id
-  if (buttonClicked.classList.contains('btn-success') && turnHappening === false) {
+  if (buttonClicked.classList.contains('btn-success') && turnHappening === false && roundWinner === false) {
     // determine boss move
     // determine order - conditional render move
     // render playerMove
@@ -257,16 +257,16 @@ function playGame() {
       gameText.innerText = `You cannot move due to ${selectedBoss.specialAttack.name}`
       selectedCharacter.ableToMove = true
       setTimeout(renderBossMove, 3000)
-      turn += 1
       getRoundWinner()
+      turn += 1
     }
 
     else if (selectedBoss.ableToMove === false) {
       gameText.innerText = `${selectedBoss.name} cannot move due to ${selectedCharacter.specialAttack.name}`
       selectedBoss.ableToMove = true
       setTimeout(renderPlayerMove, 3000)
-      turn += 1
       getRoundWinner()
+      turn += 1
     }
 
     else if (turnOrderNum === 1) {
@@ -275,8 +275,8 @@ function playGame() {
       if (roundWinner === false) {
         setTimeout(renderBossMove, 3000)
       }
+      getRoundWinner()
       turn += 1
-      getRoundWinner
     }
     else if (turnOrderNum === 2) {
       renderBossMove()
@@ -284,8 +284,8 @@ function playGame() {
       if (roundWinner === false) {
         setTimeout(renderPlayerMove, 3000)
       }
-      turn += 1
       getRoundWinner()
+      turn += 1
     }
     selectedCharacter.currentAp += 1
     selectedBoss.currentAp += 1
@@ -303,7 +303,7 @@ function playGame() {
       roundWinner = true
 
     }
-    else if (turn > 10) {
+    else if (turn >= 10) {
       if (selectedCharacter.currentHp > selectedBoss.currentHp) {
         gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP moves to the next round!`
         roundWinner = true
