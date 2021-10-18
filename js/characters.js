@@ -30,7 +30,7 @@ const playerCharacters = [
     },
     ultimate: {
       name: 'Meteor',
-      ap: 4,
+      apCost: 4,
       damage: 35,
       description: 'You focus all of your arcane strength and conjur a massive meteor from the aether. You send it hurling towards your opponent'
     }
@@ -46,19 +46,23 @@ const bossCharacters = [
     ableToMove: true,
     damageNull: false,
     shield: true,
+    ultimateUsed: false,
     standardAttack: {
+      id: 'standard-att',
       name: 'Finger of Death',
       apCost: 0,
       damage: 15,
       description: 'Mitch the Litch extends a bony finger and fires a bolt of deadly energy towards you'
     },
     defense: {
+      id: 'defense',
       name: 'Shield',
       apCost: 1,
       damageReduction: 1,
       description: 'Your foe summons forth a pulsating shield of energy to protect them from your next attack'
     },
     specialAttack: {
+      id: 'special-att',
       name: 'Paralyzing Gaze',
       effect: function(char) {
         char.ableToMove = false
@@ -67,13 +71,14 @@ const bossCharacters = [
       description: 'The litch locks eyes with you and you feel your soul grow cold. You are unable to move this turn.'
     },
     ultimate: {
+      id: 'ultimate',
       name: 'Power Word Kill',
-      ap: 5,
+      ap: 0,
       damage: 50,
       description: 'You focus all of your arcane strength and conjur a massive meteor from the aether. You send it hurling towards your opponent.'
     }
   }
 ]
-// console.log(playerCharacters[0].maxAp)
+// console.log(playerCharacters[0].currentAp)
 
 export {playerCharacters, bossCharacters}

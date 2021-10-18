@@ -1,7 +1,7 @@
 import * as characters from './characters.js'
 
 // constants
-
+const moveOptions = ['standard-att', 'defense', 'special-att','ultimate']
 // variables
 let selectedCharacter = null
 let selectedBoss = null
@@ -10,6 +10,7 @@ let turnText = null
 let round = null
 let moveId = null
 let bossMoveId = null
+let reducedDamage = null
 
 // cached element references ------
 // start and character select
@@ -36,9 +37,8 @@ const defenseButton = document.querySelector('#defense')
 const specialButton = document.querySelector('#special-att')
 const ultButton = document.querySelector('#ultimate')
 
-// initialize the game --
+// initialize the game ------
 init()
-
 
 // event listeners --------
 // start game
@@ -49,7 +49,6 @@ selectButton.addEventListener("click", selectCharacter )
 gameContainter.addEventListener("click", function(evt){
   let buttonClicked = evt.target
   moveId = buttonClicked.id
-  console.log(moveId)
   if (buttonClicked.classList.contains('btn')) {
     // determine boss move
     // determine order - conditional render move
@@ -108,9 +107,10 @@ function renderGame() {
 function renderMove(char, enemy, moveId) {
   // needs to add in AP cost
   if (moveId === 'standard-att') {
+    char.currentAp -= char.standardAttack.apCost
     if (enemy.shield === true) {
       enemy.shield = false
-      let reducedDamage = char.standardAttack.damage - (char.standardAttack.damage * enemy.defense.damageReduction)
+      reducedDamage = char.standardAttack.damage - (char.standardAttack.damage * enemy.defense.damageReduction)
       enemy.currentHp -= reducedDamage
       gameText.innerText = `${char.standardAttack.description}. Defences reduce the impact to ${reducedDamage} damage.`
 
@@ -119,29 +119,36 @@ function renderMove(char, enemy, moveId) {
       enemy.currentHp -= char.standardAttack.damage
       gameText.innerText = `${char.standardAttack.description} dealing ${char.standardAttack.damage} damage.`
     }
-    bossHealthNumber.innerText = enemy.currentHp
+    renderGame()
   }
 
   else if (moveId === 'defense') {
+    char.currentAp -= char.defense.apCost
     char.shield = true
     gameText.innerText = `${char.defense.description}`
+    renderGame()
   }
 
   else if (moveId === 'special-att') {
+    char.currentAp -= char.specialAttack.apCost
     char.specialAttack.effect(enemy)
     gameText.innerText = `${char.specialAttack.description}`
+    renderGame()
   }
   else if (moveId === 'ultimate') {
+    char.currentAp -= char.ultimate.apCost
     if (enemy.shield === true) {
       enemy.shield = false
-      enemy.currentHp -= char.ultimate.damage - (char.ultimate.damage * enemy.defense.damageReduction)
-      gameText.innerText = `${char.ultimate.description}. Defences reduce the impact to ${char.ultimate.damage} damage.`
+      reducedDamage = char.ultimate.damage - (char.ultimate.damage * enemy.defense.damageReduction)
+      enemy.currentHp -= reducedDamage
+      gameText.innerText = `${char.ultimate.description}. Defences reduce the impact to ${reducedDamage} damage.`
     }
     else {
       enemy.currentHp -= char.ultimate.damage
       gameText.innerText = `${char.ultimate.description} dealing ${char.ultimate.damage} damage.`
     }
-    bossHealthNumber.innerText = enemy.currentHp
+    renderGame()
+
   }
 }
 
@@ -152,4 +159,20 @@ function renderPlayerMove() {
 function renderBossMove() {
   // replace moveId with the select Boss move function
   renderMove(selectedBoss,selectedCharacter,moveId)
+  if (moveId === 'ultimate') {
+    selectedBoss.currentAp *= 0
+    selectedBoss.ultimateUsed = true
+  }
 }
+
+function selectBossMove() {
+  let indexNum = 0
+  if (turn <= 4 || selectedBoss.ultimateUsed === true) {
+    indexNum = Math.floor(Math.random() * (2 + 1))
+  }
+  else  {
+    indexNum = Math.floor(Math.random() * (3 - 0 + 1))
+  }
+  bossMoveId = moveOptions[indexNum]
+}
+selectBossMove()
