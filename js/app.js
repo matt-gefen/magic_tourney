@@ -13,6 +13,8 @@ let round = null
 let moveId = null
 let bossMoveId = null
 let reducedDamage = null
+let roundWinner = null
+let gameWinner = null
 
 // cached element references ------
 // start and character select
@@ -196,7 +198,9 @@ function selectBossIndex() {
   }
   else  {
     indexNum = Math.floor(Math.random() * (3 - 0 + 1))
-    console.log('ultimate available')
+    if (indexNum = 3) {
+      selectedBoss.ultimateUsed = true
+    }
   }
   bossMoveId = moveOptions[indexNum]
 }
@@ -231,33 +235,52 @@ function turnOrder() {
 
 function playGame() {
   selectBossMove()
-  console.log(bossMoveId)
   turnOrder()
-  if (selectedCharacter.ableToMove === false) {
+
+  if (selectedCharacter.ableToMove === false && selectedBoss.ableToMove === false) {
+    gameText.innerText = `Neither of you can move!`
+    selectedCharacter.ableToMove = true
+    selectedBoss.ableToMove = true
+    turn += 1
+  }
+
+  else if (selectedCharacter.ableToMove === false) {
     gameText.innerText = `You cannot move due to ${selectedBoss.specialAttack.name}`
     selectedCharacter.ableToMove = true
     setTimeout(renderBossMove, 3000)
+    turn += 1
   }
 
   else if (selectedBoss.ableToMove === false) {
-    gameText.innerText = `${selectedBoss.name} cannot move due to ${enemy.specialAttack.name}`
-    selectedCharacter.ableToMove = true
+    gameText.innerText = `${selectedBoss.name} cannot move due to ${selectedCharacter.specialAttack.name}`
+    selectedBoss.ableToMove = true
     setTimeout(renderPlayerMove, 3000)
+    turn += 1
   }
 
   else if (turnOrderNum === 1) {
     renderPlayerMove()
     setTimeout(renderBossMove, 3000)
+    turn += 1
   }
-  else {
+  else if (turnOrderNum === 2) {
     renderBossMove()
     setTimeout(renderPlayerMove, 3000)
+    turn += 1
   }
-  turn += 1
   selectedCharacter.currentAp += 1
   selectedBoss.currentAp += 1
+  getRoundWinner()
 }
 
-function getWinner() {
-  return
+function getRoundWinner() {
+  if (turn > 10) {
+    if (selectedCharacter.currentHp > selectedBoss.currentHp) {
+      gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP moves to the next round!`
+      round += 1
+    }
+    else {
+      gameText.innerText = `After 10 round, the ${selectedBoss.name} is victorious! Try again the next tourney!`
+    }
+  }
 }
