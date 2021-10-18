@@ -58,7 +58,7 @@ gameContainter.addEventListener("click", function(evt){
     // render playerMove
     playGame()
   }
-  else {
+  else if ((buttonClicked.classList.contains('btn-secondary')) ) {
     gameText.innerText = 'You do not have enough AP for magic of that caliber!'
   }
 })
@@ -183,7 +183,7 @@ function renderBossMove() {
   }
 }
 
-function selectBossMove() {
+function selectBossIndex() {
   let indexNum = 0
   if (turn <= 4 || selectedBoss.ultimateUsed === true) {
     indexNum = Math.floor(Math.random() * (2 + 1))
@@ -194,27 +194,31 @@ function selectBossMove() {
   bossMoveId = moveOptions[indexNum]
 }
 
+function selectBossMove() {
+  // while selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]]
+  selectBossIndex()
+  while (selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]].apCost > selectedBoss.currentAp) {
+    selectBossIndex()
+  }
+
+}
+
 // this function will determine the turn order based on moveId and run both render turn functions in proper order
 function turnOrder() {
   if (moveId === 'standard-att' && ['special-att', 'ultimate', 'standard-att'].includes(bossMoveId)) {
     turnOrderNum = 1
-    console.log(turnOrderNum)
   }
   else if (moveId === 'special-att' && ['ultimate'].includes(bossMoveId)) {
     turnOrderNum = 1
-    console.log(turnOrderNum)
   }
   else if (moveId === 'defense') {
     turnOrderNum = 1
-    console.log(turnOrderNum)
   }
   else if (moveId === 'ultimate'  && ['ultimate'].includes(bossMoveId)) {
     turnOrderNum = 1
-    console.log(turnOrderNum)
   }
   else {
     turnOrderNum = 2
-    console.log(turnOrderNum)
   }
 }
 
@@ -231,4 +235,5 @@ function playGame() {
   }
   turn += 1
   selectedCharacter.currentAp += 1
+  selectedBoss.currentAp += 1
 }
