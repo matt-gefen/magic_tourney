@@ -7,6 +7,7 @@ let selectedCharacter = null
 let selectedBoss = null
 let turn = null
 let turnText = null
+let turnOrderNum = null
 let round = null
 let moveId = null
 let bossMoveId = null
@@ -53,8 +54,7 @@ gameContainter.addEventListener("click", function(evt){
     // determine boss move
     // determine order - conditional render move
     // render playerMove
-    renderPlayerMove()
-    // renderBossMove()
+    playGame()
   }
 })
 
@@ -97,11 +97,13 @@ function renderGame() {
   healthNumber.innerText = selectedCharacter.currentHp
   apNumber.innerText = selectedCharacter.currentAp
   bossHealthNumber.innerText = selectedBoss.currentHp
+  turnText = `${turn}/10`
   turnNumber.innerText = turnText
   standardButton.innerText = selectedCharacter.standardAttack.name
   defenseButton.innerText = selectedCharacter.defense.name
   specialButton.innerText = selectedCharacter.specialAttack.name
   ultButton.innerText = selectedCharacter.ultimate.name
+  
 }
 
 function renderMove(char, enemy, moveId) {
@@ -158,7 +160,7 @@ function renderPlayerMove() {
 
 function renderBossMove() {
   // replace moveId with the select Boss move function
-  renderMove(selectedBoss,selectedCharacter,moveId)
+  renderMove(selectedBoss,selectedCharacter,bossMoveId)
   if (moveId === 'ultimate') {
     selectedBoss.currentAp *= 0
     selectedBoss.ultimateUsed = true
@@ -175,4 +177,41 @@ function selectBossMove() {
   }
   bossMoveId = moveOptions[indexNum]
 }
-selectBossMove()
+
+// this function will determine the turn order based on moveId and run both render turn functions in proper order
+function turnOrder() {
+  if (moveId === 'standard-att' && ['special-att', 'ultimate', 'standard-att'].includes(bossMoveId)) {
+    turnOrderNum = 1
+    console.log(turnOrderNum)
+  }
+  else if (moveId === 'special-att' && ['ultimate'].includes(bossMoveId)) {
+    turnOrderNum = 1
+    console.log(turnOrderNum)
+  }
+  else if (moveId === 'defense') {
+    turnOrderNum = 1
+    console.log(turnOrderNum)
+  }
+  else if (moveId === 'ultimate'  && ['ultimate'].includes(bossMoveId)) {
+    turnOrderNum = 1
+    console.log(turnOrderNum)
+  }
+  else {
+    turnOrderNum = 2
+    console.log(turnOrderNum)
+  }
+}
+
+function playGame() {
+  selectBossMove()
+  turnOrder()
+  if (turnOrderNum === 1) {
+    renderPlayerMove()
+    setTimeout(renderBossMove, 3000)
+  }
+  else {
+    renderBossMove()
+    setTimeout(renderPlayerMove, 3000)
+  }
+  turn += 1
+}

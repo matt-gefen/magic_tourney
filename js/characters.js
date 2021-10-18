@@ -45,7 +45,7 @@ const bossCharacters = [
     currentAp: 2,
     ableToMove: true,
     damageNull: false,
-    shield: true,
+    shield: false,
     ultimateUsed: false,
     standardAttack: {
       id: 'standard-att',
@@ -68,7 +68,7 @@ const bossCharacters = [
         char.ableToMove = false
       },
       apCost: 2,
-      description: 'The litch locks eyes with you and you feel your soul grow cold. You are unable to move this turn.'
+      description: 'The litch locks eyes with you and you feel your soul grow cold. You are unable to move next turn.'
     },
     ultimate: {
       id: 'ultimate',
