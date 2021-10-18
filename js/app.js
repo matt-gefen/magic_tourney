@@ -148,9 +148,14 @@ function renderMove(char, enemy, moveId) {
   }
 
   else if (moveId === 'special-att') {
-    char.currentAp -= char.specialAttack.apCost
-    char.specialAttack.effect(enemy)
-    gameText.innerText = `${char.specialAttack.description}`
+    if (enemy.shield === true) {
+      gameText.innerText = `${enemy.name}'s defenses absorb the the effect of ${char.specialAttack.name}.`
+    }
+    else {
+      char.currentAp -= char.specialAttack.apCost
+      char.specialAttack.effect(enemy)
+      gameText.innerText = `${char.specialAttack.description}`
+    }
     renderGame()
   }
   else if (moveId === 'ultimate') {
@@ -225,7 +230,19 @@ function turnOrder() {
 function playGame() {
   selectBossMove()
   turnOrder()
-  if (turnOrderNum === 1) {
+  if (selectedCharacter.ableToMove === false) {
+    gameText.innerText = `You cannot move due to ${selectedBoss.specialAttack.name}`
+    selectedCharacter.ableToMove = true
+    setTimeout(renderBossMove, 3000)
+  }
+
+  else if (selectedBoss.ableToMove === false) {
+    gameText.innerText = `${selectedBoss.name} cannot move due to ${enemy.specialAttack.name}`
+    selectedCharacter.ableToMove = true
+    setTimeout(renderPlayerMove, 3000)
+  }
+
+  else if (turnOrderNum === 1) {
     renderPlayerMove()
     setTimeout(renderBossMove, 3000)
   }
