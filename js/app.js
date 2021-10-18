@@ -2,6 +2,7 @@ import * as characters from './characters.js'
 
 // constants
 const moveOptions = ['standard-att', 'defense', 'special-att','ultimate']
+const moveNames = ['standardAttack', 'defense', 'specialAttack', 'ultimate']
 // variables
 let selectedCharacter = null
 let selectedBoss = null
@@ -37,6 +38,7 @@ const standardButton = document.querySelector('#standard-att')
 const defenseButton = document.querySelector('#defense')
 const specialButton = document.querySelector('#special-att')
 const ultButton = document.querySelector('#ultimate')
+const buttons = [standardButton,defenseButton,specialButton, ultButton]
 
 // initialize the game ------
 init()
@@ -50,11 +52,14 @@ selectButton.addEventListener("click", selectCharacter )
 gameContainter.addEventListener("click", function(evt){
   let buttonClicked = evt.target
   moveId = buttonClicked.id
-  if (buttonClicked.classList.contains('btn')) {
+  if (buttonClicked.classList.contains('btn-success')) {
     // determine boss move
     // determine order - conditional render move
     // render playerMove
     playGame()
+  }
+  else {
+    gameText.innerText = 'You do not have enough AP for magic of that caliber!'
   }
 })
 
@@ -103,6 +108,15 @@ function renderGame() {
   defenseButton.innerText = selectedCharacter.defense.name
   specialButton.innerText = selectedCharacter.specialAttack.name
   ultButton.innerText = selectedCharacter.ultimate.name
+
+  moveNames.forEach((i, idx) => {
+    if (selectedCharacter[i].apCost > selectedCharacter.currentAp) {
+      buttons[idx].classList.remove('btn-success')
+      buttons[idx].classList.add('btn-secondary')
+    }
+
+  })
+
   
 }
 
