@@ -108,16 +108,18 @@ function renderGame() {
   defenseButton.innerText = selectedCharacter.defense.name
   specialButton.innerText = selectedCharacter.specialAttack.name
   ultButton.innerText = selectedCharacter.ultimate.name
-
   moveNames.forEach((i, idx) => {
     if (selectedCharacter[i].apCost > selectedCharacter.currentAp) {
       buttons[idx].classList.remove('btn-success')
       buttons[idx].classList.add('btn-secondary')
     }
+    else if (selectedCharacter[i].apCost <= selectedCharacter.currentAp && buttons[idx].classList.contains('btn-secondary')) {
+      buttons[idx].classList.remove('btn-secondary')
+      buttons[idx].classList.add('btn-success')
+    }
 
   })
 
-  
 }
 
 function renderMove(char, enemy, moveId) {
@@ -228,4 +230,5 @@ function playGame() {
     setTimeout(renderPlayerMove, 3000)
   }
   turn += 1
+  selectedCharacter.currentAp += 1
 }
