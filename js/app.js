@@ -16,6 +16,7 @@ let reducedDamage = null
 let roundWinner = null
 let gameWinner = null
 let turnHappening = false
+let turnArray = []
 
 // cached element references ------
 // start and character select
@@ -90,7 +91,6 @@ function init() {
   round = 1
   turn = 1
   turnText = `${turn}/10`
-  gameMessage.innerText = `Match ${round}!`
   selectedBoss = characters.bossCharacters[0]
   // sprite.innerText = selectedBoss.name
   roundWinner = false
@@ -120,6 +120,7 @@ function selectCharacter(evt) {
 }
 
 function renderGame() {
+  gameMessage.innerText = `Match ${round}! ${selectedCharacter.name}  vs ${selectedBoss.name}`
   healthNumber.innerText = selectedCharacter.currentHp
   apNumber.innerText = selectedCharacter.currentAp
   bossHealthNumber.innerText = selectedBoss.currentHp
