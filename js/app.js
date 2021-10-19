@@ -14,12 +14,10 @@ let moveId = null
 let bossMoveId = null
 let reducedDamage = null
 let roundWinner = null
-let gameWinner = null
 let turnHappening = false
 let playerMoved = null
-let turnArray = []
-let firstPlayer = {}
-let secondPlayer = {}
+let firstPlayer = ''
+let secondPlayer = ''
 
 // cached element references ------
 // start and character select
@@ -64,13 +62,11 @@ gameContainter.addEventListener("click", function(evt){
     // determine boss move
     selectBossMove()
     useTurnOrder()
+    console.log(firstPlayer)
+    console.log(secondPlayer)
     gameText.innerText = `You chose ${buttonClicked.innerText}`
     turnHappening = true
     continueButton.removeAttribute('hidden')
-    // playGame()
-    // if (!roundWinner) {
-    //   setTimeout(turnOver, 4000)
-    // }
   }
   else if ((buttonClicked.classList.contains('btn-secondary')  && turnHappening === false ) ) {
     gameText.innerText = 'You do not have enough AP for magic of that caliber!'
@@ -80,9 +76,10 @@ gameContainter.addEventListener("click", function(evt){
 continueButton.addEventListener("click", function(evt){
   if (turnHappening === true && roundWinner === false) {
     playGame()
+    console.log(playerMoved)
     getRoundWinner()
     if (playerMoved === 1 || roundWinner === true) {
-      setTimeout(turnOver, 2000)
+      turnOver()
     }
   }
 })
@@ -260,42 +257,17 @@ function turnOrder() {
 }
 
 function useTurnOrder() {
-  let selectedBossMove = selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]].name
-  let selectedPlayerMove = selectedCharacter[moveNames[moveOptions.indexOf(moveId)]].name
+  // let selectedBossMove = selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]].name
+  // let selectedPlayerMove = selectedCharacter[moveNames[moveOptions.indexOf(moveId)]].name
   turnOrder()
   if (turnOrderNum === 1) {
-    firstPlayer = {
-      moveChar: selectedCharacter.name,
-      moveName : selectedPlayerMove,
-      moveFunct : function () {
-        renderPlayerMove()
-      }
-    }
-    secondPlayer = {
-      moveChar: selectedBoss.name,
-      moveName : selectedBossMove,
-      moveFunct : function () {
-        renderBossMove()
-      }
-  }
+    firstPlayer = 'player'
+    secondPlayer = 'boss'
 }
   else if (turnOrderNum === 0) {
-    firstPlayer = {
-      moveChar: selectedBoss.name,
-      moveName : selectedBossMove,
-      moveFunct : function () {
-        renderBossMove()
-      }
-  }
-    secondPlayer = {
-      moveChar: selectedCharacter.name,
-      moveName : selectedPlayerMove,
-      moveFunct : function () {
-        renderPlayerMove()
-      }
-    }
-}
-}
+    firstPlayer = 'boss'
+    secondPlayer = 'player'
+}}
 
 
 function playGame() {
@@ -328,15 +300,25 @@ function playGame() {
       playerMoved = 1
     }
     else if (playerMoved === 1) {
-      firstPlayer.moveFunct()
+      if (firstPlayer === 'player') {
+        renderPlayerMove()
+      }
+      else {
+        renderBossMove()
+      }
       playerMoved = 0
     }
 
     else if (playerMoved === 0) {
-      secondPlayer.moveFunct()
-      playerMoved = 1
+      if (firstPlayer === 'boss') {
+        renderBossMove()
+        playerMoved = 1
+      }
+      else if (secondPlayer === 'player') {
+        renderPlayerMove()
+        playerMoved = 1
+      }
     }
-
   }
     
 }
@@ -362,7 +344,6 @@ function playGame() {
         roundWinner = true
       }
     }
-
 }
 
 function turnOver() {
@@ -370,6 +351,7 @@ function turnOver() {
   selectedCharacter.currentAp += 1
   selectedBoss.currentAp += 1
   continueButton.hidden = true
+  // gameText.innerText = 'Select your move!'
   turn += 1
 }
 
