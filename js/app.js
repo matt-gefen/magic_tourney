@@ -228,7 +228,6 @@ function selectBossIndex() {
 }
 
 function selectBossMove() {
-  // while selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]]
   selectBossIndex()
   while (selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]].apCost > selectedBoss.currentAp) {
     selectBossIndex()
@@ -257,8 +256,6 @@ function turnOrder() {
 }
 
 function useTurnOrder() {
-  // let selectedBossMove = selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]].name
-  // let selectedPlayerMove = selectedCharacter[moveNames[moveOptions.indexOf(moveId)]].name
   turnOrder()
   if (turnOrderNum === 1) {
     firstPlayer = 'player'
