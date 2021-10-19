@@ -41,6 +41,7 @@ const standardButton = document.querySelector('#standard-att')
 const defenseButton = document.querySelector('#defense')
 const specialButton = document.querySelector('#special-att')
 const ultButton = document.querySelector('#ultimate')
+const continueButton = document.querySelector('#continue')
 const buttons = [standardButton,defenseButton,specialButton, ultButton]
 
 // initialize the game ------
@@ -60,6 +61,7 @@ gameContainter.addEventListener("click", function(evt){
     // determine order - conditional render move
     // render playerMove
     turnHappening = true
+    continueButton.removeAttribute('hidden')
     playGame()
     if (!roundWinner) {
       setTimeout(turnOver, 4000)
@@ -70,6 +72,16 @@ gameContainter.addEventListener("click", function(evt){
     gameText.innerText = 'You do not have enough AP for magic of that caliber!'
   }
 })
+
+continueButton.addEventListener("click", function(evt){
+  if (turnHappening) {
+    console.log('butt')
+  }
+  else {
+    console.log('nupe')
+  }
+})
+
 
 
 // functions --------
