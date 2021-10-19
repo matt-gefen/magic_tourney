@@ -62,28 +62,17 @@ body {
   grid-template-areas:
     ". sprite sprite boss-hp"
     ". sprite sprite ."
-    "game-text game-text game-text game-text"
+    "game-text game-text game-text continue-btn"
     "game-info game-info game-info game-info"
     "play-options play-options play-options play-options";
 }
 
- #left-text {
-  grid-area: left-text;
+.continue-btn {
+  grid-area: continue-btn;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 6vh;
-  text-align: center;
-  margin-left: 20px;
-}
-#right-text {
-  grid-area: right-text;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 6vh;
-  text-align: center;
-  margin-left: 20px;
 }
 
 
@@ -91,6 +80,11 @@ body {
   font-family: 'VT323', monospace;
   font-size: 6vh;
   margin-top: 40px;
+}
+
+#continue {
+  font-size: 3vh;
+  width: 80%;
 }
 
 .sprite { 
