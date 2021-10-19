@@ -9,18 +9,21 @@ const playerCharacters = [
     damageNull: false,
     shield: false,
     standardAttack: {
+      id: 'standard-att',
       name: 'Magic Missle',
       apCost: 0,
       damage: 15,
       description: 'You send a focused beam of arcane energy across the arena'
     },
     defense: {
+      id: 'defense',
       name: 'Thunder Ward',
       apCost: 1,
       damageReduction: 1,
       description: 'You cloak yourself in a ward of sparks, protecting yourself from the next attack'
     },
     specialAttack: {
+      id: 'special-att',
       name: 'Ray of Frost',
       effect: function(char) {
         char.ableToMove = false
@@ -29,6 +32,7 @@ const playerCharacters = [
       description: 'You generate an itense blast of freezing air, stopping your foe in their tracks. They cannot move next turn.'
     },
     ultimate: {
+      id: 'ultimate',
       name: 'Meteor',
       apCost: 4,
       damage: 35,
