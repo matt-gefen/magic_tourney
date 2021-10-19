@@ -275,6 +275,8 @@ function useTurnOrder() {
 
 function playGame() {
   if (roundWinner === false) {
+    console.log(selectedCharacter.ableToMove)
+    console.log(selectedBoss.ableToMove )
     if (selectedCharacter.ableToMove === false && selectedBoss.ableToMove === false) {
       gameText.innerText = `Neither of you can move!`
       selectedCharacter.ableToMove = true
@@ -348,8 +350,12 @@ function playGame() {
         roundWinner = true
 
       }
+      else if (selectedCharacter.currentHp < selectedBoss.currentHp) {
+        gameText.innerText = `After 10 rounds, the ${selectedBoss.name} is victorious! Try again the next tourney!`
+        roundWinner = true
+      }
       else {
-        gameText.innerText = `After 10 round, the ${selectedBoss.name} is victorious! Try again the next tourney!`
+        gameText.innerText = `It's a tie! By the rules of Magic Tourney, nobody wins!`
         roundWinner = true
       }
     }
@@ -358,9 +364,14 @@ function playGame() {
 function turnOver() {
   console.log('turn over')
   turnHappening = false
+  console.log('addingCharAp')
   selectedCharacter.currentAp += 1
+  console.log('addingBossAp')
   selectedBoss.currentAp += 1
   continueButton.hidden = true
-  turn += 1
+  if (roundWinner === false) {
+    turn += 1
+  }
+  renderGame()
 }
 
