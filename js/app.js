@@ -44,6 +44,7 @@ const defenseButton = document.querySelector('#defense')
 const specialButton = document.querySelector('#special-att')
 const ultButton = document.querySelector('#ultimate')
 const continueButton = document.querySelector('#continue')
+const playOptions = document.querySelector('.play-options')
 const buttons = [standardButton,defenseButton,specialButton, ultButton]
 
 // initialize the game ------
@@ -55,7 +56,7 @@ startButton.addEventListener("click", startClick)
 // select character
 selectButton.addEventListener("click", selectCharacter )
 // attack listener
-gameContainter.addEventListener("click", function(evt){
+playOptions.addEventListener("click", function(evt){
   let buttonClicked = evt.target
   moveId = buttonClicked.id
   if (buttonClicked.classList.contains('btn-success') && turnHappening === false && roundWinner === false) {
@@ -240,18 +241,23 @@ function turnOrder() {
 
   if (moveId === 'standard-att' && ['special-att', 'ultimate', 'standard-att'].includes(bossMoveId)) {
     turnOrderNum = 1
+    console.log('your standard attack will go first')
   }
   else if (moveId === 'special-att' && ['ultimate'].includes(bossMoveId)) {
     turnOrderNum = 1
+    console.log('your special will go first')
   }
   else if (moveId === 'defense') {
     turnOrderNum = 1
+    console.log('your defense will go first')
   }
   else if (moveId === 'ultimate'  && ['ultimate'].includes(bossMoveId)) {
     turnOrderNum = 1
+    console.log('your ult will go first')
   }
   else {
     turnOrderNum = 0
+    console.log(`your ${moveId} will go second`)
   }
 }
 
@@ -298,20 +304,26 @@ function playGame() {
     }
     else if (playerMoved === 1) {
       if (firstPlayer === 'player') {
+        console.log('rendering player move first')
         renderPlayerMove()
       }
       else {
+        console.log('rendering boss move first')
         renderBossMove()
       }
       playerMoved = 0
     }
 
     else if (playerMoved === 0) {
-      if (firstPlayer === 'boss') {
+      if (firstPlayer === 'player') {
+        console.log('rendering boss move second')
+        console.log(bossMoveId)
         renderBossMove()
         playerMoved = 1
       }
-      else if (secondPlayer === 'player') {
+      else {
+        console.log('rendering player move second')
+        console.log(moveId)
         renderPlayerMove()
         playerMoved = 1
       }
@@ -344,11 +356,11 @@ function playGame() {
 }
 
 function turnOver() {
+  console.log('turn over')
   turnHappening = false
   selectedCharacter.currentAp += 1
   selectedBoss.currentAp += 1
   continueButton.hidden = true
-  // gameText.innerText = 'Select your move!'
   turn += 1
 }
 
