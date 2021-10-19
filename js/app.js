@@ -16,7 +16,23 @@ let reducedDamage = null
 let roundWinner = null
 let gameWinner = null
 let turnHappening = false
-let turnArray = []
+let turnArray = [
+  {
+    moveChar: '',
+    moveName: '',
+    moveFunct: function() {
+      console.log('test')
+    }
+  },
+  {
+    moveChar: '',
+    moveName: '',
+    moveFunct: function() {
+      console.log('test')
+    }
+  }
+]
+playerMoved = null
 
 // cached element references ------
 // start and character select
@@ -67,7 +83,6 @@ gameContainter.addEventListener("click", function(evt){
     if (!roundWinner) {
       setTimeout(turnOver, 4000)
     }
-
   }
   else if ((buttonClicked.classList.contains('btn-secondary')  && turnHappening === false ) ) {
     gameText.innerText = 'You do not have enough AP for magic of that caliber!'
@@ -75,11 +90,9 @@ gameContainter.addEventListener("click", function(evt){
 })
 
 continueButton.addEventListener("click", function(evt){
-  if (turnHappening) {
-    console.log('butt')
-  }
-  else {
-    console.log('nupe')
+  if (turnHappening && roundWinner === false) {
+    // roundWinner()
+    // playGame()
   }
 })
 
@@ -94,6 +107,7 @@ function init() {
   selectedBoss = characters.bossCharacters[0]
   // sprite.innerText = selectedBoss.name
   roundWinner = false
+  playerMoved = 1
 }
 
 function startClick(evt) {
@@ -198,6 +212,7 @@ function renderMove(char, enemy, moveId) {
   }
 }
 
+
 function renderPlayerMove() {
   renderMove(selectedCharacter,selectedBoss,moveId)
 }
@@ -236,20 +251,43 @@ function selectBossMove() {
 
 // this function will determine the turn order based on moveId and run both render turn functions in proper order
 function turnOrder() {
+  let selectedPlayerMove = ''
+  let selectedBossMove = selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]].name
   if (moveId === 'standard-att' && ['special-att', 'ultimate', 'standard-att'].includes(bossMoveId)) {
     turnOrderNum = 1
+    selectedPlayerMove = selectedCharacter.standardAttack.name
   }
   else if (moveId === 'special-att' && ['ultimate'].includes(bossMoveId)) {
     turnOrderNum = 1
+    selectedPlayerMove = selectedCharacter.specialAttack.name
   }
   else if (moveId === 'defense') {
     turnOrderNum = 1
+    selectedPlayerMove = selectedCharacter.defense.name
   }
   else if (moveId === 'ultimate'  && ['ultimate'].includes(bossMoveId)) {
+    selectedPlayerMove = selectedCharacter.ultimate.name
     turnOrderNum = 1
   }
   else {
-    turnOrderNum = 2
+    turnOrderNum = 0
+  }
+
+  if (turnOrderNum = 1) {
+    turnArray[0].moveChar = selectedCharacter.name
+    turnArray[0].moveName = selectedPlayerMove
+    turnArray[0].moveFunct = renderPlayerMove()
+    turnArray[1].moveChar = selectedBoss.name
+    turnArray[1].moveName = selectedBossMove
+    turnArray[1].moveFunct = renderBossMove()
+  }
+  else {
+    turnArray[1].moveChar = selectedCharacter.name
+    turnArray[1].moveName = selectedPlayerMove
+    turnArray[1].moveFunct = renderPlayerMove()
+    turnArray[0].moveChar = selectedBoss.name
+    turnArray[0].moveName = selectedBossMove
+    turnArray[0].moveFunct = renderBossMove()
   }
 }
 
