@@ -80,7 +80,7 @@ function init() {
   turnText = `${turn}/10`
   gameMessage.innerText = `Match ${round}!`
   selectedBoss = characters.bossCharacters[0]
-  sprite.innerText = selectedBoss.name
+  // sprite.innerText = selectedBoss.name
   roundWinner = false
 }
 
