@@ -79,11 +79,6 @@ playOptions.addEventListener("click", function(evt){
 })
 
 continueButton.addEventListener("click", nextButtonClick)
-continueButton.addEventListener("keyup", function(evt){
-  if (evt.keyCode === 13) {
-    nextButtonClick()
-  }
-})
 
 resetButton.addEventListener('click', init)
 
