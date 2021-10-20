@@ -62,7 +62,7 @@ body {
   grid-template-areas:
     "reset sprite sprite boss-hp"
     ". sprite sprite ."
-    ". game-text game-text ."
+    "game-text game-text game-text game-text"
     "game-info game-info game-info game-info"
     "play-options play-options play-options play-options";
 }
@@ -75,9 +75,10 @@ body {
 }
 
 #restart-button {
-  height: 80%;
-  width: 80%;
-  font-size: 30px;
+  /* height: 80%; */
+  /* width: 80%; */
+  padding: 10px;
+  font-size: 3vh;
   background-color: red;
   color: white;
   border: solid white 5px;
@@ -90,6 +91,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px;
+  width: 100%;
 }
 
 
@@ -134,7 +137,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
+  text-align: center;
   font-size:25px;
   padding-left: 10px;
   padding-right: 10px;

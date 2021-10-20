@@ -58,9 +58,8 @@ selectButton.addEventListener("click", selectCharacter )
 // attack listener
 playOptions.addEventListener("click", function(evt){
   let buttonClicked = evt.target
-  moveId = buttonClicked.id
   if (buttonClicked.classList.contains('btn-success') && turnHappening === false && roundWinner === false) {
-    // determine boss move
+    moveId = buttonClicked.id
     selectBossMove()
     useTurnOrder()
     console.log(firstPlayer)
