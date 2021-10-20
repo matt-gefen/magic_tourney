@@ -94,9 +94,13 @@ body {
 
 
 .game-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'VT323', monospace;
   font-size: 6vh;
   margin-top: 40px;
+  text-align: center;
 }
 
 #continue {
