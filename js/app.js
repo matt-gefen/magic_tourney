@@ -75,15 +75,21 @@ playOptions.addEventListener("click", function(evt){
 })
 
 continueButton.addEventListener("click", function(evt){
-  if (turnHappening === true && roundWinner === false) {
+  getRoundWinner()
+  if (roundWinner === true) {
+    turnHappening = false
+    console.log('game winner')
+  }
+  else if (roundWinner === false && turnHappening === true) {
     playGame()
-    console.log(playerMoved)
-    getRoundWinner()
-    if (playerMoved === 1 || roundWinner === true) {
+  }
+  else if (roundWinner === false && turnHappening === false) {
+      console.log('turn ending')
       turnOver()
+      getRoundWinner()
     }
   }
-})
+)
 
 
 
@@ -290,12 +296,14 @@ function playGame() {
         console.log(bossMoveId)
         renderBossMove()
         playerMoved = 1
+        turnHappening = false
       }
       else {
         console.log('rendering player move second')
         console.log(moveId)
         renderPlayerMove()
         playerMoved = 1
+        turnHappening = false
       }
     }
   }
@@ -333,13 +341,12 @@ function turnOver() {
   console.log('turn over')
   turnHappening = false
   console.log('addingCharAp')
+  gameText.innerText = `Select Your Move`
   selectedCharacter.currentAp += 1
   console.log('addingBossAp')
   selectedBoss.currentAp += 1
   continueButton.hidden = true
-  if (roundWinner === false) {
-    turn += 1
-  }
+  turn += 1
   renderGame()
 }
 
