@@ -74,22 +74,7 @@ playOptions.addEventListener("click", function(evt){
   }
 })
 
-continueButton.addEventListener("click", function(evt){
-  getRoundWinner()
-  if (roundWinner === true) {
-    turnHappening = false
-    console.log('game winner')
-  }
-  else if (roundWinner === false && turnHappening === true) {
-    playGame()
-  }
-  else if (roundWinner === false && turnHappening === false) {
-      console.log('turn ending')
-      turnOver()
-      getRoundWinner()
-    }
-  }
-)
+continueButton.addEventListener("click", nextButtonClick)
 
 
 
@@ -129,7 +114,7 @@ function selectCharacter(evt) {
 }
 
 function renderGame() {
-  gameMessage.innerText = `Match ${round}! ${selectedCharacter.name}  vs ${selectedBoss.name}`
+  gameMessage.innerText = `${selectedCharacter.name}  vs ${selectedBoss.name}`
   healthNumber.innerText = selectedCharacter.currentHp
   apNumber.innerText = selectedCharacter.currentAp
   bossHealthNumber.innerText = selectedBoss.currentHp
@@ -350,3 +335,18 @@ function turnOver() {
   renderGame()
 }
 
+function nextButtonClick(){
+  getRoundWinner()
+  if (roundWinner === true) {
+    turnHappening = false
+    console.log('game winner')
+  }
+  else if (roundWinner === false && turnHappening === true) {
+    playGame()
+  }
+  else if (roundWinner === false && turnHappening === false) {
+      console.log('turn ending')
+      turnOver()
+      getRoundWinner()
+    }
+  }
