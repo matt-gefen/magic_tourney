@@ -46,6 +46,7 @@ const ultButton = document.querySelector('#ultimate')
 const continueButton = document.querySelector('#continue')
 const playOptions = document.querySelector('.play-options')
 const buttons = [standardButton,defenseButton,specialButton, ultButton]
+const buttonList = document.querySelectorAll('button')
 
 // initialize the game ------
 init()
@@ -67,6 +68,11 @@ playOptions.addEventListener("click", function(evt){
     gameText.innerText = `You chose ${buttonClicked.innerText}`
     turnHappening = true
     continueButton.removeAttribute('hidden')
+    buttonList.forEach((i) => {
+      if (moveOptions.includes(i.id)) {
+        i.disabled = true
+      }
+    })
   }
   else if ((buttonClicked.classList.contains('btn-secondary')  && turnHappening === false ) ) {
     gameText.innerText = 'You do not have enough AP for magic of that caliber!'
@@ -306,12 +312,12 @@ function playGame() {
     }
     else if (turn >= 10) {
       if (selectedCharacter.currentHp > selectedBoss.currentHp) {
-        gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP moves to the next round!`
+        gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP wins!`
         roundWinner = true
 
       }
       else if (selectedCharacter.currentHp < selectedBoss.currentHp) {
-        gameText.innerText = `After 10 rounds, the ${selectedBoss.name} is victorious! Try again the next tourney!`
+        gameText.innerText = `After 10 rounds, the ${selectedBoss.name} is victorious! Try again in the next tourney!`
         roundWinner = true
       }
       else {
@@ -323,6 +329,9 @@ function playGame() {
 
 function turnOver() {
   console.log('turn over')
+  buttonList.forEach((i) => {
+    i.disabled = false
+  })
   turnHappening = false
   console.log('addingCharAp')
   gameText.innerText = `Select Your Move`
