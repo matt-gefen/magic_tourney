@@ -5,7 +5,6 @@ const playerCharacters = [
     maxHp: 100,
     currentHp: 100,
     currentAp: 2,
-    ableToMove: true,
     damageNull: false,
     shield: false,
     standardAttack: {
@@ -24,12 +23,12 @@ const playerCharacters = [
     },
     specialAttack: {
       id: 'special-att',
-      name: 'Ray of Frost',
+      name: 'Enhance Ability',
       effect: function(char) {
-        char.ableToMove = false
+        char.standardAttack.damage += 5
       },
       apCost: 2,
-      description: 'You generate an itense blast of freezing air, stopping your foe in their tracks. They cannot move next turn.'
+      description: 'You focus your magical energy. inward, drawing out more of your power. Your magic missle deals more damage now.'
     },
     ultimate: {
       id: 'ultimate',
@@ -47,7 +46,6 @@ const bossCharacters = [
     maxHp: 100,
     currentHp: 100,
     currentAp: 1,
-    ableToMove: true,
     damageNull: false,
     shield: false,
     ultimateUsed: false,
@@ -67,12 +65,12 @@ const bossCharacters = [
     },
     specialAttack: {
       id: 'special-att',
-      name: 'Paralyzing Gaze',
+      name: 'Investiture of Arcane',
       effect: function(char) {
-        char.ableToMove = false
+        char.standardAttack.damage += 5
       },
       apCost: 2,
-      description: 'The litch locks eyes with you and you feel your soul grow cold. You are unable to move next turn.'
+      description: 'You see the Litch\'s empty eyes flash as he focuses his power. His attack power has increased.'
     },
     ultimate: {
       id: 'ultimate',
@@ -83,6 +81,5 @@ const bossCharacters = [
     }
   }
 ]
-// console.log(playerCharacters[0].currentAp)
 
 export {playerCharacters, bossCharacters}

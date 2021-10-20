@@ -173,17 +173,12 @@ function renderMove(char, enemy, moveId) {
   }
 
   else if (moveId === 'special-att') {
-    if (enemy.shield === true) {
-      enemy.shield = false
-      gameText.innerText = `${enemy.name}'s defenses absorb the the effect of ${char.specialAttack.name}.`
-    }
-    else {
       char.currentAp -= char.specialAttack.apCost
-      char.specialAttack.effect(enemy)
+      char.specialAttack.effect(char)
       gameText.innerText = `${char.specialAttack.description}`
+      renderGame()
     }
-    renderGame()
-  }
+
   else if (moveId === 'ultimate') {
     char.currentAp -= char.ultimate.apCost
     if (enemy.shield === true) {
@@ -277,34 +272,7 @@ function playGame() {
   if (roundWinner === false) {
     console.log(selectedCharacter.ableToMove)
     console.log(selectedBoss.ableToMove )
-    if (selectedCharacter.ableToMove === false && selectedBoss.ableToMove === false) {
-      gameText.innerText = `Neither of you can move!`
-      selectedCharacter.ableToMove = true
-      selectedBoss.ableToMove = true
-      playerMoved = 1
-    }
-
-    else if (selectedCharacter.ableToMove === false && playerMoved === 1) {
-      gameText.innerText = `You cannot move due to ${selectedBoss.specialAttack.name}`
-      playerMoved = 0
-    }
-
-    else if (selectedCharacter.ableToMove === false && playerMoved === 0) {
-      renderBossMove()
-      selectedCharacter.ableToMove = true
-      playerMoved = 1
-    }
-
-    else if (selectedBoss.ableToMove === false && playerMoved === 1) {
-      gameText.innerText = `${selectedBoss.name} cannot move due to ${selectedCharacter.specialAttack.name}`
-      playerMoved = 0
-    }
-    else if (selectedBoss.ableToMove === false && playerMoved === 0) {
-      renderPlayerMove()
-      selectedBoss.ableToMove = true
-      playerMoved = 1
-    }
-    else if (playerMoved === 1) {
+    if (playerMoved === 1) {
       if (firstPlayer === 'player') {
         console.log('rendering player move first')
         renderPlayerMove()
@@ -336,7 +304,7 @@ function playGame() {
 
   function getRoundWinner() {
     if (selectedCharacter.currentHp <= 0) {
-      gameText.innerText = `The ${selectedBoss.name} is victorious! Try again the next tourney!`
+      gameText.innerText = `The ${selectedBoss.name} is victorious! Try again in the next tourney!`
       roundWinner = true
     }
     else if (selectedBoss.currentHp <= 0) {
