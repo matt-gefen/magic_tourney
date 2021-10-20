@@ -26,14 +26,14 @@ const startContainer = document.querySelector('.start-container')
 const mainMessage = document.querySelector('#main-message')
 const startButton = document.querySelector('#start')
 const selectButton = document.querySelector('#select')
-// const restartButton = document.querySelector('.restart')
+const resetButton = document.querySelector('#restart-button')
 const playerSelect = document.querySelector('.player-selection')
 let activeCarItem = document.querySelector('.active')
 
 // main game elements
 const gameMessage = document.querySelector('.game-message')
 const gameContainter = document.querySelector('.game-container')
-const sprite = document.querySelector('.sprite')
+// const sprite = document.querySelector('.sprite')
 const gameText = document.querySelector('.game-text')
 const healthNumber = document.querySelector('#health-number')
 const apNumber = document.querySelector('#ap-number')
@@ -52,11 +52,10 @@ const buttonList = document.querySelectorAll('button')
 init()
 
 // event listeners --------
-// start game
 startButton.addEventListener("click", startClick)
-// select character
+
 selectButton.addEventListener("click", selectCharacter )
-// attack listener
+
 playOptions.addEventListener("click", function(evt){
   let buttonClicked = evt.target
   if (buttonClicked.classList.contains('btn-success') && turnHappening === false && roundWinner === false) {
@@ -81,7 +80,7 @@ playOptions.addEventListener("click", function(evt){
 
 continueButton.addEventListener("click", nextButtonClick)
 
-
+resetButton.addEventListener('click', init)
 
 // functions --------
 function init() {
@@ -93,6 +92,16 @@ function init() {
   // sprite.innerText = selectedBoss.name
   roundWinner = false
   playerMoved = 1
+  mainMessage.innerText = 'Welcome to Magic Tourney'
+  startButton.innerText = 'Start The Game'
+  playerSelect.hidden = true
+  selectButton.hidden = true
+  startContainer.hidden = false
+  startButton.hidden = false
+  gameContainter.hidden = true
+  gameMessage.hidden = true
+  bodyElement.style.flexDirection = 'row'
+  
 }
 
 function startClick(evt) {
