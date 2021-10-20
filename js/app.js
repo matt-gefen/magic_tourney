@@ -4,8 +4,8 @@ import * as characters from './characters.js'
 const moveOptions = ['standard-att', 'defense', 'special-att','ultimate']
 const moveNames = ['standardAttack', 'defense', 'specialAttack', 'ultimate']
 // variables
-let selectedCharacter = null
-let selectedBoss = null
+let selectedCharacter = {}
+let selectedBoss = {}
 let turn = null
 let turnText = null
 let turnOrderNum = null
@@ -79,16 +79,21 @@ playOptions.addEventListener("click", function(evt){
 })
 
 continueButton.addEventListener("click", nextButtonClick)
+continueButton.addEventListener("keyup", function(evt){
+  if (evt.keyCode === 13) {
+    nextButtonClick()
+  }
+})
 
 resetButton.addEventListener('click', init)
 
 // functions --------
 function init() {
-  selectedCharacter = null
+  selectedCharacter = {}
   round = 1
   turn = 1
   turnText = `${turn}/10`
-  selectedBoss = characters.bossCharacters[0]
+  Object.assign(selectedBoss, characters.bossCharacters[0])
   // sprite.innerText = selectedBoss.name
   roundWinner = false
   playerMoved = 1
@@ -117,7 +122,7 @@ function selectCharacter(evt) {
   const charId = activeCarItem.id
   characters.playerCharacters.forEach((i) => {
     if (i.id === charId) {
-      selectedCharacter = i
+      Object.assign(selectedCharacter,i)
     }
   })
   startContainer.hidden = true
