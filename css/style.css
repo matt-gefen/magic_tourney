@@ -49,7 +49,7 @@ body {
 
 .game-container {
   display: grid;
-  border: 4px solid black;
+  border-top: 4px solid black;
   font-family: 'VT323', monospace;
   /* padding: 2px; */
   height: 90%;
@@ -153,17 +153,17 @@ body {
 }
 
 #health {
-  border: solid black 1px;
+  /* border: solid black 1px; */
   padding: 10px;
 }
 
 #ap {
-  border: solid black 1px;
+  /* border: solid black 1px; */
   padding: 10px;
 }
 
 #turn {
-  border: solid black 1px;
+  /* border: solid black 1px; */
   padding: 10px;
 }
 
