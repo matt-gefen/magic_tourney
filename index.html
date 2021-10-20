@@ -42,22 +42,16 @@
       <button id = 'select' type="button" class="btn btn-primary btn-lg" hidden>Step Into Arena</button>
   </main>
   <h1 class='game-message' hidden></h1>
-  <!-- <div class="restart" hidden>restart button</div> -->
+  
   <main class="game-container" hidden>
+    <div class='restart'>
+      <button id="restart-button">Restart</button>
+    </div>
     <div class="sprite">
       <!-- <img class='boss-sprite' src="./images/mitch-the-litch.gif" alt="Mitch the Litch"> -->
     </div>
-    <!-- <div id='left-text' class='turn-text'>
-      SELECT YOUR MOVE
-    </div>
-    <div id = 'right-text' class='turn-text'>
-      SELECT YOUR MOVE
-    </div> -->
     <div class="game-text">
       The battle begins!
-    </div>
-    <div class = "continue-btn">
-      <button type="button" id ='continue' class="btn btn-primary" hidden>Next</button>
     </div>
     <div class="game-info">
       <div id='health'>
@@ -74,6 +68,9 @@
       </div>
     </div>
     <div class="play-options">
+      <div class = "continue-btn">
+        <button type="button" id ='continue' class="btn btn-primary" hidden>Next</button>
+      </div>
       <div id='top-options'>
         <button type="button" id = 'standard-att' class="btn btn-success"><span class='move'>Standard</span></button>
         <button type="button" id = 'defense' class="btn btn-success"><span class ='move'>Defense</span></button>

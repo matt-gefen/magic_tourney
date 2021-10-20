@@ -60,15 +60,32 @@ body {
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". sprite sprite boss-hp"
+    "reset sprite sprite boss-hp"
     ". sprite sprite ."
-    "game-text game-text game-text continue-btn"
+    ". game-text game-text ."
     "game-info game-info game-info game-info"
     "play-options play-options play-options play-options";
 }
+.restart {
+  grid-area: reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 60%; */
+}
+
+#restart-button {
+  height: 80%;
+  width: 80%;
+  font-size: 30px;
+  background-color: red;
+  color: white;
+  border: solid white 5px;
+  border-radius: 25px;
+}
 
 .continue-btn {
-  grid-area: continue-btn;
+  /* grid-area: continue-btn; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,7 +101,7 @@ body {
 
 #continue {
   font-size: 3vh;
-  width: 80%;
+  width: 100%;
 }
 
 .sprite { 
