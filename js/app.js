@@ -29,6 +29,7 @@ const selectButton = document.querySelector('#select')
 const resetButton = document.querySelector('#restart-button')
 const playerSelect = document.querySelector('.player-selection')
 let activeCarItem = document.querySelector('.active')
+const mainAudio = document.getElementById("audio-play")
 
 // main game elements
 const gameMessage = document.querySelector('.game-message')
@@ -84,6 +85,8 @@ resetButton.addEventListener('click', init)
 
 // functions --------
 function init() {
+  mainAudio.volume = 0.4; 
+  mainAudio.src = "./audio/ambiance_1.mp3"
   selectedCharacter = {}
   round = 1
   turn = 1
@@ -124,6 +127,7 @@ function selectCharacter(evt) {
   gameContainter.removeAttribute('hidden')
   gameMessage.removeAttribute('hidden')
   bodyElement.style.flexDirection = 'column'
+  mainAudio.src = './audio/battle_2.mp3'
   renderGame()
 }
 
