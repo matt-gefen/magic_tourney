@@ -59,12 +59,9 @@ body {
 
 .game-bottom {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1.8fr 0.2fr; 
-  grid-template-rows: 1fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    "game-container ."; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -89,17 +86,10 @@ body {
     "play-options play-options play-options play-options";
 }
 .game-top {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1.8fr 0.2fr; 
-  grid-template-rows: 1fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    "game-message-box restart"; 
+  width: 100%; 
 }
 
 #game-message-box {
-  grid-area: game-message-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,11 +105,12 @@ body {
   color: white;
 }
 .restart {
-  grid-area: restart;
+  /* grid-area: restart; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
+  margin-right: 30px;
 }
 
 #restart-button {
@@ -153,9 +144,14 @@ body {
   font-size: 3vh;
   width: 100%;
 }
+#sprite-background {
+  grid-area: sprite;
+  background: url(/images/parallax-mountain-bg.png);
+  border-radius: 25%;
+}
 
 .sprite { 
-  grid-area: sprite;
+  /* grid-area: sprite; */
   display: flex;
   justify-content: center;
   align-items: center;

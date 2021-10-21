@@ -46,16 +46,17 @@
       <button id = 'start' type="button" class="btn btn-primary btn-lg">Start The Game</button>
       <button id = 'select' type="button" class="btn btn-primary btn-lg" hidden>Step Into Arena</button>
   </main>
+  <div class='restart'><button id="restart-button"><span id='reset-text'>X</span></button></div>
   <div class='game-top'>
     <div id='game-message-box'><h1 class='game-message' hidden></h1></div>
-    <div class='restart'><button id="restart-button"><span id='reset-text'>X</span></button></div>
   </div>
   <div class ='game-bottom' hidden>
     <main class="game-container" hidden>
       <div class='restart'>
       </div>
-      <div class="sprite">
-        <!-- <img class='boss-sprite' src="./images/mitch-the-litch.gif" alt="Mitch the Litch"> -->
+      <div id='sprite-background'>
+        <div class="sprite">
+        </div>
       </div>
       <div class="game-text">
         The battle begins!
