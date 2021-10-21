@@ -20,8 +20,15 @@ You'll be prompted to select a character from the following options:
 
 As of now, the game consists of one Boss character NPC, Mitch The Litch. His moveset and action options mirror the Mage (with a stronger, single-use Ultimate)
 
-### Technologies Used
+## Technologies Used
 - Gameplay is built in Javascript (with HTML and JSS)
+
+## Future Features
+- Looking forward to adding more boss and playable characters, infrastructure to support their addition is already present in game. 
+  - Example Future Boss - Barry, the Beholder
+![beholder-2](https://user-images.githubusercontent.com/29576093/138296585-16d90bee-2ffe-4485-aa6e-d2262df24634.gif)
+- More animations and sounds associated with each attack and move
+- Prettier HP and AP tracking (visual indicators that those stats have moved)
 
 ## Attribution
 ### Art
