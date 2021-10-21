@@ -11,7 +11,6 @@ Inspired by the classic turn-based battle systems of Old-School Final Fantasy, P
 
 You'll be prompted to select a character from the following options:
 ### Mage - Balanced Strength
-The mage is a character that emphasizes balance and strength.
 - Magic Missle: Deals 15 damage - Costs 0 AP
 - Thunder Ward: Reduces impact of next attack by 100% - Costs 1 AP
 - Enhance Ability: Increases Magic Missle damage by 5 - Costs 2 AP
