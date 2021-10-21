@@ -8,8 +8,8 @@ html, body {
 body {
   /* background-image: linear-gradient(rgb(206, 134, 242),white); */
   background: url(/images/particles.gif);
-  /* background-repeat: no-repeat;
-  background-size: cover; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
 /* Use a system font, if none are available use an available sans-sarif   font */
   font-family: 'VT323', monospace;
   color: white;
@@ -71,7 +71,6 @@ body {
 .game-container {
   grid-area: game-container;
   display: grid;
-  border-top: 4px solid black;
   font-family: 'VT323', monospace;
   /* padding: 2px; */
   color: white;
@@ -96,18 +95,22 @@ body {
   grid-template-rows: 1fr; 
   gap: 0px 0px; 
   grid-template-areas: 
-    "game-message restart"; 
+    "game-message-box restart"; 
 }
 
+#game-message-box {
+  grid-area: game-message-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .game-message {
-  grid-area: game-message;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'VT323', monospace;
   font-size: 6vh;
-  margin-top: 40px;
   text-align: center;
   color: white;
 }
@@ -122,11 +125,12 @@ body {
 #restart-button {
   height:50px;
   width: 50px;
-  font-size: 3vh;
+  font-size: 3.5vh;
   background-color: white;
   background-position: center; 
   border:0;
   border-radius: 25px;
+  font-family: 'VT323', monospace;
 }
 
 .continue-btn {
