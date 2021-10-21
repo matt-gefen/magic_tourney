@@ -32,6 +32,7 @@ body {
 
 #start {
   margin-top: 20px;
+  font-size: 2vh;
 }
 
 #main-message {
@@ -221,6 +222,27 @@ body {
 .btn {
   max-height: 10vh;
 }
+.btn-primary {
+  background-color: white !important;
+  border-color: white;
+  color: black;
+}
+.btn-primary:hover {
+  border-color: grey;
+  color: black;
+}
+.btn-success {
+  background-color: rgb(179, 20, 20) !important;
+  border-color: white;
+}
+
+.btn-success:hover{
+  border-color: grey;
+}
+
+.btn-success:disabled{
+  border-color: grey;
+}
 
 #standard-att {
   font-size: 3vh;
@@ -235,6 +257,9 @@ body {
   font-size: 3vh;
   /* min-height: 10vh; */
 }
+#rules-button {
+  font-size: 2vh;
+}
 
 .boss-hp {
   grid-area: boss-hp;
@@ -247,6 +272,9 @@ body {
   font-size: 3vh;
 }
 
+.modal {
+  color: black;
+}
 
 /* .carousel-inner > .item > img {
   height: 200px;
