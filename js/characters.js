@@ -28,7 +28,7 @@ const playerCharacters = [
         char.standardAttack.damage += 5
       },
       apCost: 2,
-      description: 'You focus your magical energy. inward, drawing out more of your power. Your magic missle deals more damage now.'
+      description: 'You focus your magical energy inward, drawing out more of your power. Your magic missle deals more damage now.'
     },
     ultimate: {
       id: 'ultimate',
