@@ -305,3 +305,9 @@ h6 {
 /* .carousel-inner > .item > img {
   height: 200px;
 } */
+
+#mage {
+  background: url(/images/mountains-night.png);
+  background-position: center;
+  background-size: cover;
+}
