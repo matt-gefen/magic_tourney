@@ -277,7 +277,14 @@ body {
 }
 
 .modal-text {
-  font-size: 15px;
+  font-size: 20px;
+}
+h5 {
+  font-size: 30px;
+  font-weight: bold;
+}
+h6 {
+  font-size: 25px;
 }
 
 /* .carousel-inner > .item > img {
