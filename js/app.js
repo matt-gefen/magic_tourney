@@ -97,6 +97,7 @@ function init() {
   roundWinner = false
   playerMoved = 1
   mainMessage.innerText = 'Welcome to Magic Tourney'
+  gameText.innerText = 'The Battle Begins!'
   startButton.innerText = 'Start The Game'
   playerSelect.hidden = true
   selectButton.hidden = true

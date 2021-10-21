@@ -58,22 +58,17 @@ body {
 }
 
 .game-bottom {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width:500px;
 }
 
-
 .game-container {
-  grid-area: game-container;
   display: grid;
   font-family: 'VT323', monospace;
   /* padding: 2px; */
   color: white;
   /* height: 90%; */
   /* width: 90%; */
-  /* margin: 10px 10px 30px 10px; */
+  margin: 10px 10px 30px 10px;
   grid-template-columns: 0.8fr 1.2fr 1.2fr 0.8fr;
   grid-template-rows: 0.7fr 1.6fr 0.7fr 0.6fr 1.4fr;
   gap: 0px 0px;
@@ -147,6 +142,9 @@ body {
 #sprite-background {
   grid-area: sprite;
   background: url(/images/parallax-mountain-bg.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 25%;
 }
 
@@ -173,11 +171,12 @@ body {
 
 .game-text { 
   grid-area: game-text;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size:25px;
+  width: 100%;
+  font-size: 25px;
   padding-left: 10px;
   padding-right: 10px;
 }
