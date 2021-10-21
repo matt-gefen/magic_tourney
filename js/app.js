@@ -64,8 +64,14 @@ startButton.addEventListener("click", startClick)
 selectButton.addEventListener("click", selectCharacter )
 
 modeButton.addEventListener("click", function(evt){
-  setLightMode()
-})
+  if (mode === 'dark' ) {
+    setLightMode()
+  }
+else if (mode==='light'){
+  setDarkMode()
+    }
+  }
+)
 
 playOptions.addEventListener("click", function(evt){
   let buttonClicked = evt.target
@@ -123,6 +129,7 @@ function init() {
   rulesButton.hidden = false
   charName.hidden = true
   console.log(selectedBoss.standardAttack.damage)
+  mode = 'dark'
 }
 
 function startClick(evt) {
@@ -176,6 +183,12 @@ function renderGame() {
     }
 
   })
+  if (mode === 'light') {
+    setLightMode()
+  }
+  else {
+    setDarkMode()
+  }
 
 }
 
@@ -402,21 +415,38 @@ function nextButtonClick(){
     bodyElement.style.color = 'black'
     gameContainter.style.color = 'black'
     gameMessage.style.color = 'black'
+    buttonList.forEach((i) => {
+      if (moveOptions.includes(i.id) && i.classList.contains('btn-success')) {
+        i.style.backgroundColor = '#ffc43d'
+        console.log(i.style)
+      }
+
+      else if (moveOptions.includes(i.id) && i.classList.contains('btn-secondary')) {
+        i.style.backgroundColor = '#6c757d'
+        console.log(i.style)
+      }
+    })
     mode = 'light'
+
     }
     
-  //   function setDarkMode() {
-  //     buttons.forEach((i) => {
-  //       i.style.border = 'solid #4a4a4a 8px'
-  //       i.style.backgroundColor = 'white'
-  //       i.style.color = 'black';
-  //     })
-  //     bodyElement.style.backgroundColor = 'black'
-  //     userNumber.style.color = 'black'
-  //     userNumber.style.backgroundColor = 'white'
-  //     userNumber.style.border = 'solid #4a4a4a 8px'
-  //     countDisplay.style.color = 'white'
-  //     fizzBuzz.style.color = 'white'
-  //     modeButton.innerText = 'Light Mode'
-  //     mode = 'dark'
-  //   }
+    function setDarkMode() {
+      bodyElement.style.background = 'url(/images/particles.gif)'
+      bodyElement.style.backgroundRepeat = ''
+      bodyElement.style.backgroundSize = ''
+      bodyElement.style.color = 'white'
+      gameContainter.style.color = 'white'
+      gameMessage.style.color = 'white'
+      buttonList.forEach((i) => {
+        if (moveOptions.includes(i.id) && i.classList.contains('btn-success')) {
+          i.style.backgroundColor = 'rgb(179, 20, 20)'
+          console.log(i.style)
+        }
+  
+        else if (moveOptions.includes(i.id) && i.classList.contains('btn-secondary')) {
+          i.style.backgroundColor = '#6c757d'
+          console.log(i.style)
+        }
+      })
+      mode = 'dark'
+    }

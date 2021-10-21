@@ -255,16 +255,25 @@ body {
   color: black;
 }
 .btn-success {
-  background-color: rgb(179, 20, 20) !important;
+  background-color: rgb(179, 20, 20);
   border-color: white;
 }
 
 .btn-success:hover{
+  background-color: rgb(179, 20, 20);
   border-color: grey;
 }
 
 .btn-success:disabled{
+  background-color: rgb(179, 20, 20);
   border-color: grey;
+}
+
+.btn-check:focus + .btn-success, .btn-success:focus {
+  color: #fff;
+  background-color: rgb(179, 20, 20);;
+  border-color: grey;
+  box-shadow: 0 0 0 0.25rem grey;
 }
 
 #standard-att {
