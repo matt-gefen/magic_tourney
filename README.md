@@ -1,8 +1,9 @@
-# magic_tourney
+# Magic Tourney
+
 ## Hello Spellcaster!
 You have entered into Magic Tourney, a competition that pits Wizard against Wizard in a turn-based battle!
 In this game you will be able to select a character and challenge an NPC Boss for the crown!
-The Tourney Match boils down to the following:
+Inspired by the classic turn-based battle systems of Old-School Final Fantasy, Pokemon, and Earthbound, each Tourney Match boils down to the following:
 
 1. Select a move that you have enough AP (Action Points) to use</li>
 2. Use the 'Next' button to observe your move's impact as well as the Boss' move</li>
