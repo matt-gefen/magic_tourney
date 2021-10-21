@@ -95,8 +95,9 @@ function init() {
   round = 1
   turn = 1
   turnText = `${turn}/10`
-  Object.assign(selectedBoss, characters.bossCharacters[0])
-  // sprite.innerText = selectedBoss.name
+  Object.assign(selectedBoss,characters.bossCharacters[0])
+  // something here is broken, the boss damage is being overwritten by their special attacks from prev rounds.
+  selectedBoss.standardAttack.damage = 15
   roundWinner = false
   playerMoved = 1
   mainMessage.innerText = 'Welcome to Magic Tourney'
@@ -115,7 +116,7 @@ function init() {
   gameBottom.hidden = true
   rulesButton.hidden = false
   charName.hidden = true
-  
+  console.log(selectedBoss.standardAttack.damage)
 }
 
 function startClick(evt) {

@@ -336,3 +336,19 @@ h6 {
   /* width: 100%; */
   font-size: 30px !important;
 }
+#dark-mode-game-div {
+width: 50px;
+height: 100%;
+background-color: white;
+border-radius: 25px;
+margin-left: 20px;
+}
+#dark-mode-game {
+  background: url(/images/icons8-smiling-sun-day-48.png);
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+
+}
