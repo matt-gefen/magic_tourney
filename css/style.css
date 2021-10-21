@@ -133,6 +133,12 @@ body {
   font-family: 'VT323', monospace;
 }
 
+#reset-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .continue-btn {
   display: flex;
   flex-direction: column;
