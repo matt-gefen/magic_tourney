@@ -8,6 +8,7 @@ html, body {
 body {
   /* background-image: linear-gradient(rgb(206, 134, 242),white); */
   background: url(/images/particles.gif);
+  /* background: url(/images/Lines.gif); */
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
 /* Use a system font, if none are available use an available sans-sarif   font */

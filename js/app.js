@@ -18,6 +18,7 @@ let turnHappening = false
 let playerMoved = null
 let firstPlayer = ''
 let secondPlayer = ''
+let mode = 'dark'
 
 // cached element references ------
 // start and character select
@@ -52,6 +53,7 @@ const continueButton = document.querySelector('#continue')
 const playOptions = document.querySelector('.play-options')
 const buttons = [standardButton,defenseButton,specialButton, ultButton]
 const buttonList = document.querySelectorAll('button')
+const modeButton = document.querySelector('#dark-mode-game')
 
 // initialize the game ------
 init()
@@ -60,6 +62,10 @@ init()
 startButton.addEventListener("click", startClick)
 
 selectButton.addEventListener("click", selectCharacter )
+
+modeButton.addEventListener("click", function(evt){
+  setLightMode()
+})
 
 playOptions.addEventListener("click", function(evt){
   let buttonClicked = evt.target
@@ -388,3 +394,29 @@ function nextButtonClick(){
       getRoundWinner()
     }
   }
+
+  function setLightMode() {
+    bodyElement.style.background = 'url(/images/fajrbackground.png)'
+    bodyElement.style.backgroundRepeat = 'no-repeat'
+    bodyElement.style.backgroundSize = 'cover'
+    bodyElement.style.color = 'black'
+    gameContainter.style.color = 'black'
+    gameMessage.style.color = 'black'
+    mode = 'light'
+    }
+    
+  //   function setDarkMode() {
+  //     buttons.forEach((i) => {
+  //       i.style.border = 'solid #4a4a4a 8px'
+  //       i.style.backgroundColor = 'white'
+  //       i.style.color = 'black';
+  //     })
+  //     bodyElement.style.backgroundColor = 'black'
+  //     userNumber.style.color = 'black'
+  //     userNumber.style.backgroundColor = 'white'
+  //     userNumber.style.border = 'solid #4a4a4a 8px'
+  //     countDisplay.style.color = 'white'
+  //     fizzBuzz.style.color = 'white'
+  //     modeButton.innerText = 'Light Mode'
+  //     mode = 'dark'
+  //   }
