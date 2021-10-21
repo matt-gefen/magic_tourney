@@ -5,9 +5,11 @@ html, body {
 }
 
 body {
-  background-image: linear-gradient(rgb(206, 134, 242),white);
+  /* background-image: linear-gradient(rgb(206, 134, 242),white); */
+  background: url(/images/particles.gif);
 /* Use a system font, if none are available use an available sans-sarif   font */
   font-family: 'VT323', monospace;
+  color: white;
   margin: 0;
   display: flex;
   align-items: center;
@@ -22,6 +24,7 @@ body {
   justify-content: center;
   font-family: 'VT323', monospace;
   font-size: 1vh;
+  color: white;
 }
 
 #start {
@@ -52,6 +55,7 @@ body {
   border-top: 4px solid black;
   font-family: 'VT323', monospace;
   /* padding: 2px; */
+  color: white;
   height: 90%;
   width: 90%;
   margin: 10px 10px 30px 10px;
@@ -85,6 +89,7 @@ body {
   font-size: 6vh;
   margin-top: 40px;
   text-align: center;
+  color: white;
 }
 .restart {
   grid-area: restart;
