@@ -13,6 +13,8 @@ Inspired by the classic turn-based battle systems of Old-School Final Fantasy, P
 
 You'll be prompted to select a character from the following options:
 ### Mage - Balanced Strength
+![mage](https://user-images.githubusercontent.com/29576093/138314801-f06cb9b0-1009-488c-808f-3b8736ad66a6.gif)
+
 - Magic Missle: Deals 15 damage - Costs 0 AP
 - Thunder Ward: Reduces impact of next attack by 100% - Costs 1 AP
 - Enhance Ability: Increases Magic Missle damage by 5 - Costs 2 AP
