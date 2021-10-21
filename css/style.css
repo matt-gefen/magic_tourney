@@ -100,12 +100,22 @@ body {
   text-align: center;
   color: white;
 }
+
+.top-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.top-buttons > div:last-of-type {
+  margin-left:auto;
+}
+
 .restart {
-  /* grid-area: restart; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
   margin-right: 30px;
 }
 
@@ -259,6 +269,11 @@ body {
 }
 #rules-button {
   font-size: 2vh;
+}
+#in-game-rules-button {
+  font-size: 2vh;
+  margin-left: 30px;
+  height: 100%;
 }
 
 .boss-hp {

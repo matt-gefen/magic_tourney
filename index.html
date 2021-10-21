@@ -94,7 +94,48 @@
       <button id = 'start' type="button" class="btn btn-primary btn-lg">Start The Game</button>
       <button id = 'select' type="button" class="btn btn-primary btn-lg" hidden>Step Into Arena</button>
   </main>
-  <div class='restart'><button id="restart-button"><span id='reset-text'>X</span></button></div>
+  <div class ='top-buttons' hidden> 
+    <button type="button" id='in-game-rules-button' class="btn btn-secondary" data-toggle="modal" data-target="#in-game-modal">
+      Rules
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="in-game-modal" tabindex="-1" role="dialog" aria-labelledby="in-game-modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Magic Tourney!</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5>How to Play</h5>
+            <span class='modal-text'>
+              <ol>
+                <li>Select a move that you have enough AP (Action Points) to use</li>
+                <li>Use the 'Next' button to observe your move's impact as well as the Boss' move</li>
+                <li>Repeat until the 10th round or one of you has less than 1 HP (Hit Points)</li>
+              </ol>
+            <br>
+            <br>
+            </span>
+            <h5>Mage - Balanced Strength</h5>
+            <!-- <span class='modal-text'> -->
+              <!-- The mage is a character that emphasizes balance and strength.<br>Her moves include:
+            </span> -->
+            <h6>Magic Missle: <span class='modal-text'>Deals 15 damage - Costs 0 AP</span></h6>
+            <h6>Thunder Ward: <span class='modal-text'>Reduces impact of next attack by 100% - Costs 1 AP</span></h6>
+            <h6>Enhance Ability: <span class='modal-text'>Increases Magic Missle damage by 5 - Costs 2 AP</span></h6>
+            <h6>Meteor: <span class='modal-text'>Deals 35 damage- Costs 4 AP</span></h6>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Return to Match</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='restart'><button id="restart-button"><span id='reset-text'>X</span></button></div></div>
   <div class='game-top'>
     <div id='game-message-box'><h1 class='game-message' hidden></h1></div>
   </div>

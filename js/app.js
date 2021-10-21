@@ -32,6 +32,7 @@ const playerSelect = document.querySelector('.player-selection')
 let activeCarItem = document.querySelector('.active')
 const mainAudio = document.getElementById("audio-play")
 const gameTop = document.querySelector('.game-top')
+const topButtons = document.querySelector('.top-buttons')
 const gameBottom = document.querySelector('.game-bottom')
 const gameMessage = document.querySelector('.game-message')
 const gameContainter = document.querySelector('.game-container')
@@ -108,6 +109,7 @@ function init() {
   gameMessage.hidden = true
   bodyElement.style.flexDirection = 'row'
   gameTop.hidden = true
+  topButtons.hidden = true
   gameBottom.hidden = true
   
 }
@@ -132,6 +134,7 @@ function selectCharacter(evt) {
   gameContainter.removeAttribute('hidden')
   gameMessage.removeAttribute('hidden')
   gameTop.removeAttribute('hidden')
+  topButtons.removeAttribute('hidden')
   gameBottom.removeAttribute('hidden')
   bodyElement.style.flexDirection = 'column'
   mainAudio.src = './audio/battle_2.mp3'
