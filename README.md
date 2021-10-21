@@ -1,5 +1,7 @@
 # Magic Tourney
 
+Deployed Game: https://magic-tourney.netlify.app/
+
 ## Hello Spellcaster!
 You have entered into Magic Tourney, a competition that pits Wizard against Wizard in a turn-based battle!
 In this game you will be able to select a character and challenge an NPC Boss for the crown!
@@ -15,3 +17,17 @@ You'll be prompted to select a character from the following options:
 - Thunder Ward: Reduces impact of next attack by 100% - Costs 1 AP
 - Enhance Ability: Increases Magic Missle damage by 5 - Costs 2 AP
 - Meteor: Deals 35 damage- Costs 4 AP
+
+As of now, the game consists of one Boss character NPC, Mitch The Litch. His moveset and action options mirror the Mage (with a stronger, single-use Ultimate)
+
+### Technologies Used
+- Gameplay is built in Javascript (with HTML and JSS)
+
+## Attribution
+### Art
+- All sprites done by me
+- Backgrounds sourced from:
+  - https://ansimuz.itch.io/mountain-dusk-parallax-background  
+### Music
+- Music sourced from Metroidvania Mini Pack by  https://twitter.com/TwistwonkaE
+  - https://fredpatry-music-composer.itch.io/metroidvania-mini-pack
