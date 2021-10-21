@@ -25,6 +25,8 @@ const bodyElement = document.querySelector('body')
 const startContainer = document.querySelector('.start-container')
 const mainMessage = document.querySelector('#main-message')
 const startButton = document.querySelector('#start')
+const charName = document.querySelector('.character-name')
+const rulesButton = document.querySelector('#rules-button')
 const selectButton = document.querySelector('#select')
 const restartBox = document.querySelector('.restart')
 const resetButton = document.querySelector('#restart-button')
@@ -111,15 +113,18 @@ function init() {
   gameTop.hidden = true
   topButtons.hidden = true
   gameBottom.hidden = true
+  rulesButton.hidden = false
+  charName.hidden = true
   
 }
 
 function startClick(evt) {
   mainMessage.innerText = 'Select Your Contestant'
-  startButton.innerText = 'Step Into Arena'
   playerSelect.removeAttribute('hidden')
   selectButton.removeAttribute('hidden')
   startButton.hidden = true
+  rulesButton.hidden = true
+  charName.hidden = false
 }
 
 function selectCharacter(evt) {

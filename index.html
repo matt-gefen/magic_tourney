@@ -68,9 +68,12 @@
           </div>
         </div>
       </div>
-
-
       <div id="carouselExampleControls" class="carousel slide player-selection" data-ride="carousel" data-interval="false" hidden>
+        <div class ='character-name' hidden>
+          <button type="button" id='mage-button' class="btn btn-secondary" data-toggle="modal" data-target="#mage-modal">
+            Mage
+          </button>
+        </div>
         <div class="carousel-inner">
           <div class="carousel-item active" id = 'mage'>
             <img src="images/mage.gif" class="d-block" alt="wizard">
@@ -94,6 +97,9 @@
       <button id = 'start' type="button" class="btn btn-primary btn-lg">Start The Game</button>
       <button id = 'select' type="button" class="btn btn-primary btn-lg" hidden>Step Into Arena</button>
   </main>
+  <!-- <div id='select-container'>
+
+  </div> -->
   <div class ='top-buttons' hidden> 
     <button type="button" id='in-game-rules-button' class="btn btn-secondary" data-toggle="modal" data-target="#in-game-modal">
       Rules
@@ -184,6 +190,32 @@
       </div>
     </main>
   
+  </div>
+
+  <div class="modal fade" id="mage-modal" tabindex="-1" role="dialog" aria-labelledby="mage-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Mage Class</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5>Mage - Balanced Strength</h5>
+          <!-- <span class='modal-text'> -->
+            <!-- The mage is a character that emphasizes balance and strength.<br>Her moves include:
+          </span> -->
+          <h6>Magic Missle: <span class='modal-text'>Deals 15 damage - Costs 0 AP</span></h6>
+          <h6>Thunder Ward: <span class='modal-text'>Reduces impact of next attack by 100% - Costs 1 AP</span></h6>
+          <h6>Enhance Ability: <span class='modal-text'>Increases Magic Missle damage by 5 - Costs 2 AP</span></h6>
+          <h6>Meteor: <span class='modal-text'>Deals 35 damage- Costs 4 AP</span></h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Return to Select</button>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
