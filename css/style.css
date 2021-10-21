@@ -276,6 +276,10 @@ body {
   color: black;
 }
 
+.modal-text {
+  font-size: 15px;
+}
+
 /* .carousel-inner > .item > img {
   height: 200px;
 } */
