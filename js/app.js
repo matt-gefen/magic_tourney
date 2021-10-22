@@ -51,6 +51,7 @@ const specialButton = document.querySelector('#special-att')
 const ultButton = document.querySelector('#ultimate')
 const continueButton = document.querySelector('#continue')
 const playOptions = document.querySelector('.play-options')
+const gameInfo = document.querySelector('.game-info')
 const buttons = [standardButton,defenseButton,specialButton, ultButton]
 const buttonList = document.querySelectorAll('button')
 const modeButton = document.querySelector('#dark-mode-game')
@@ -129,6 +130,7 @@ function init() {
   rulesButton.hidden = false
   charName.hidden = true
   console.log(selectedBoss.standardAttack.damage)
+  gameInfo.hidden = true
   mode = 'dark'
 }
 
@@ -149,6 +151,7 @@ function selectCharacter(evt) {
       Object.assign(selectedCharacter,i)
     }
   })
+  selectedCharacter.standardAttack.damage = 15
   startContainer.hidden = true
   gameContainter.removeAttribute('hidden')
   gameMessage.removeAttribute('hidden')
@@ -158,6 +161,8 @@ function selectCharacter(evt) {
   bodyElement.style.flexDirection = 'column'
   mainAudio.src = './audio/battle_2.mp3'
   restartBox.hidden = false
+  gameInfo.hidden = false
+  gameText.style.fontSize = '3vh'
   renderGame()
 }
 
@@ -315,15 +320,11 @@ function useTurnOrder() {
 
 function playGame() {
   if (roundWinner === false) {
-    console.log(selectedCharacter.ableToMove)
-    console.log(selectedBoss.ableToMove )
     if (playerMoved === 1) {
       if (firstPlayer === 'player') {
-        console.log('rendering player move first')
         renderPlayerMove()
       }
       else {
-        console.log('rendering boss move first')
         renderBossMove()
       }
       playerMoved = 0
@@ -331,15 +332,11 @@ function playGame() {
 
     else if (playerMoved === 0) {
       if (firstPlayer === 'player') {
-        console.log('rendering boss move second')
-        console.log(bossMoveId)
         renderBossMove()
         playerMoved = 1
         turnHappening = false
       }
       else {
-        console.log('rendering player move second')
-        console.log(moveId)
         renderPlayerMove()
         playerMoved = 1
         turnHappening = false
@@ -353,24 +350,39 @@ function playGame() {
     if (selectedCharacter.currentHp <= 0) {
       gameText.innerText = `The ${selectedBoss.name} is victorious! Try again in the next tourney!`
       roundWinner = true
+      playOptions.hidden = true
+      gameInfo.hidden = true
+      gameInfo.style.fontSize = '4vh'
     }
     else if (selectedBoss.currentHp <= 0) {
       gameText.innerText = `The ${selectedCharacter.name} prevails, defeating ${selectedBoss.name}`
       roundWinner = true
+      playOptions.hidden = true
+      gameInfo.hidden = true
+      gameText.style.fontSize = '4vh'
 
     }
-    else if (turn >= 10) {
+    else if (turn > 10) {
       if (selectedCharacter.currentHp > selectedBoss.currentHp) {
         gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP wins!`
         roundWinner = true
-
+        playOptions.hidden = true
+        gameInfo.hidden = true
+        gameText.style.fontSize = '4vh'
+        
       }
       else if (selectedCharacter.currentHp < selectedBoss.currentHp) {
         gameText.innerText = `After 10 rounds, the ${selectedBoss.name} is victorious! Try again in the next tourney!`
+        playOptions.hidden = true
         roundWinner = true
+        gameInfo.hidden = true
+        gameText.style.fontSize = '4vh'
       }
       else {
         gameText.innerText = `It's a tie! By the rules of Magic Tourney, nobody wins!`
+        playOptions.hidden = true
+        gameInfo.hidden = true
+        gameText.style.fontSize = '4vh'
         roundWinner = true
       }
     }
@@ -382,13 +394,14 @@ function turnOver() {
     i.disabled = false
   })
   turnHappening = false
-  console.log('addingCharAp')
   gameText.innerText = `Select Your Move`
   selectedCharacter.currentAp += 1
-  console.log('addingBossAp')
   selectedBoss.currentAp += 1
   continueButton.hidden = true
-  turn += 1
+  getRoundWinner()
+  if (roundWinner === false) {
+    turn += 1
+  }
   renderGame()
 }
 
