@@ -1,15 +1,16 @@
+// import external objects
 import * as characters from './characters.js'
 
 // constants
 const moveOptions = ['standard-att', 'defense', 'special-att','ultimate']
 const moveNames = ['standardAttack', 'defense', 'specialAttack', 'ultimate']
+
 // variables
 let selectedCharacter = {}
 let selectedBoss = {}
 let turn = null
 let turnText = null
 let turnOrderNum = null
-let round = null
 let moveId = null
 let bossMoveId = null
 let reducedDamage = null
@@ -21,7 +22,7 @@ let secondPlayer = ''
 let mode = 'dark'
 
 // cached element references ------
-// start and character select
+
 const bodyElement = document.querySelector('body')
 const startContainer = document.querySelector('.start-container')
 const mainMessage = document.querySelector('#main-message')
@@ -39,7 +40,6 @@ const topButtons = document.querySelector('.top-buttons')
 const gameBottom = document.querySelector('.game-bottom')
 const gameMessage = document.querySelector('.game-message')
 const gameContainter = document.querySelector('.game-container')
-// const sprite = document.querySelector('.sprite')
 const gameText = document.querySelector('.game-text')
 const healthNumber = document.querySelector('#health-number')
 const apNumber = document.querySelector('#ap-number')
@@ -80,8 +80,6 @@ playOptions.addEventListener("click", function(evt){
     moveId = buttonClicked.id
     selectBossMove()
     useTurnOrder()
-    console.log(firstPlayer)
-    console.log(secondPlayer)
     gameText.innerText = `You chose ${buttonClicked.innerText}`
     turnHappening = true
     continueButton.removeAttribute('hidden')
@@ -105,11 +103,10 @@ function init() {
   mainAudio.volume = 0.4; 
   mainAudio.src = "./audio/ambiance_1.mp3"
   selectedCharacter = {}
-  round = 1
   turn = 1
   turnText = `${turn}/10`
   Object.assign(selectedBoss,characters.bossCharacters[0])
-  // something here is broken, the boss damage is being overwritten by their special attacks from prev rounds.
+  // something here is broken, the boss damage is being overwritten by their special attacks from prev rounds. Same goes for PC. 
   selectedBoss.standardAttack.damage = 15
   roundWinner = false
   playerMoved = 1
@@ -129,12 +126,11 @@ function init() {
   gameBottom.hidden = true
   rulesButton.hidden = false
   charName.hidden = true
-  console.log(selectedBoss.standardAttack.damage)
   gameInfo.hidden = true
   mode = 'dark'
 }
 
-function startClick(evt) {
+function startClick() {
   mainMessage.innerText = 'Select Your Contestant'
   playerSelect.removeAttribute('hidden')
   selectButton.removeAttribute('hidden')
@@ -143,7 +139,7 @@ function startClick(evt) {
   charName.hidden = false
 }
 
-function selectCharacter(evt) {
+function selectCharacter() {
   activeCarItem = document.querySelector('.active')
   const charId = activeCarItem.id
   characters.playerCharacters.forEach((i) => {
@@ -198,7 +194,6 @@ function renderGame() {
 }
 
 function renderMove(char, enemy, moveId) {
-  // needs to add in AP cost
   if (moveId === 'standard-att') {
     char.currentAp -= char.standardAttack.apCost
     if (enemy.shield === true) {
@@ -251,7 +246,6 @@ function renderPlayerMove() {
 }
 
 function renderBossMove() {
-  // replace moveId with the select Boss move function
   renderMove(selectedBoss,selectedCharacter,bossMoveId)
   if (moveId === 'ultimate') {
     selectedBoss.currentAp *= 0
@@ -278,31 +272,24 @@ function selectBossMove() {
   while (selectedBoss[moveNames[moveOptions.indexOf(bossMoveId)]].apCost > selectedBoss.currentAp) {
     selectBossIndex()
   }
-
 }
 
-// this function will determine the turn order based on moveId and run both render turn functions in proper order
 function turnOrder() {
 
   if (moveId === 'standard-att' && ['special-att', 'ultimate', 'standard-att'].includes(bossMoveId)) {
     turnOrderNum = 1
-    console.log('your standard attack will go first')
   }
   else if (moveId === 'special-att' && ['ultimate'].includes(bossMoveId)) {
     turnOrderNum = 1
-    console.log('your special will go first')
   }
   else if (moveId === 'defense') {
     turnOrderNum = 1
-    console.log('your defense will go first')
   }
   else if (moveId === 'ultimate'  && ['ultimate'].includes(bossMoveId)) {
     turnOrderNum = 1
-    console.log('your ult will go first')
   }
   else {
     turnOrderNum = 0
-    console.log(`your ${moveId} will go second`)
   }
 }
 
@@ -389,7 +376,6 @@ function playGame() {
 }
 
 function turnOver() {
-  console.log('turn over')
   buttonList.forEach((i) => {
     i.disabled = false
   })
@@ -409,13 +395,11 @@ function nextButtonClick(){
   getRoundWinner()
   if (roundWinner === true) {
     turnHappening = false
-    console.log('game winner')
   }
   else if (roundWinner === false && turnHappening === true) {
     playGame()
   }
   else if (roundWinner === false && turnHappening === false) {
-      console.log('turn ending')
       turnOver()
       getRoundWinner()
     }
@@ -431,12 +415,10 @@ function nextButtonClick(){
     buttonList.forEach((i) => {
       if (moveOptions.includes(i.id) && i.classList.contains('btn-success')) {
         i.style.backgroundColor = '#ffc43d'
-        console.log(i.style)
       }
 
       else if (moveOptions.includes(i.id) && i.classList.contains('btn-secondary')) {
         i.style.backgroundColor = '#6c757d'
-        console.log(i.style)
       }
     })
     mode = 'light'
@@ -453,12 +435,10 @@ function nextButtonClick(){
       buttonList.forEach((i) => {
         if (moveOptions.includes(i.id) && i.classList.contains('btn-success')) {
           i.style.backgroundColor = 'rgb(179, 20, 20)'
-          console.log(i.style)
         }
   
         else if (moveOptions.includes(i.id) && i.classList.contains('btn-secondary')) {
           i.style.backgroundColor = '#6c757d'
-          console.log(i.style)
         }
       })
       mode = 'dark'
