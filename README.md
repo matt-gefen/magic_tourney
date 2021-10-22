@@ -11,6 +11,10 @@ Inspired by the classic turn-based battle systems of Old-School Final Fantasy, P
 2. Use the 'Next' button to observe your move's impact as well as the Boss' move</li>
 3. Repeat until the 10th round or one of you has less than 1 HP (Hit Points)</li>
 
+Start Screen
+![Screen Shot 2021-10-22 at 8 02 53 AM](https://user-images.githubusercontent.com/29576093/138467817-6265f0f6-4d8e-4689-bd41-e11b149eae32.png)
+
+
 You'll be prompted to select a character from the following options:
 ### Mage - Balanced Strength
 ![mage](https://user-images.githubusercontent.com/29576093/138314801-f06cb9b0-1009-488c-808f-3b8736ad66a6.gif)
@@ -22,8 +26,22 @@ You'll be prompted to select a character from the following options:
 
 As of now, the game consists of one Boss character NPC, Mitch The Litch. His moveset and action options mirror the Mage (with a stronger, single-use Ultimate)
 
+Character Select Screen 
+
+![Screen Shot 2021-10-22 at 8 03 08 AM](https://user-images.githubusercontent.com/29576093/138467905-19663339-2475-40e2-8017-5d0c9419a858.png)
+
+
 ## Technologies Used
 - Gameplay is built in Javascript (with HTML and JSS)
+
+## Gameplay Screenshots
+![Screen Shot 2021-10-22 at 8 03 19 AM](https://user-images.githubusercontent.com/29576093/138467973-7f40d86c-c0b9-4223-8762-4fffa6e5223c.png)
+
+### Turn Example
+![Screen Shot 2021-10-22 at 8 03 26 AM](https://user-images.githubusercontent.com/29576093/138468019-4d23bcf9-ddaa-40b3-b72d-cd4f7de5a790.png)
+![Screen Shot 2021-10-22 at 8 03 31 AM](https://user-images.githubusercontent.com/29576093/138468024-9747c818-3642-4f12-8d08-e1d8d5416a89.png)
+
+![Screen Shot 2021-10-22 at 8 03 39 AM](https://user-images.githubusercontent.com/29576093/138468037-f13219be-4810-40cd-a3a0-641e50693f79.png)
 
 ## Future Features
 - Looking forward to adding more boss and playable characters, infrastructure to support their addition is already present in game. 
