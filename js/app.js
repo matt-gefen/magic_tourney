@@ -126,7 +126,8 @@ function init() {
   gameBottom.hidden = true
   rulesButton.hidden = false
   charName.hidden = true
-  gameInfo.hidden = true
+  gameInfo.hidden = false
+  playOptions.hidden = false
   mode = 'dark'
 }
 
@@ -339,14 +340,14 @@ function playGame() {
       roundWinner = true
       playOptions.hidden = true
       gameInfo.hidden = true
-      gameInfo.style.fontSize = '4vh'
+      mainAudio.src = "./audio/you-lose.mp3"
     }
     else if (selectedBoss.currentHp <= 0) {
       gameText.innerText = `The ${selectedCharacter.name} prevails, defeating ${selectedBoss.name}`
       roundWinner = true
       playOptions.hidden = true
       gameInfo.hidden = true
-      gameText.style.fontSize = '4vh'
+      mainAudio.src = "./audio/victory.mp3"
 
     }
     else if (turn > 10) {
@@ -355,7 +356,7 @@ function playGame() {
         roundWinner = true
         playOptions.hidden = true
         gameInfo.hidden = true
-        gameText.style.fontSize = '4vh'
+        mainAudio.src = "./audio/victory.mp3"
         
       }
       else if (selectedCharacter.currentHp < selectedBoss.currentHp) {
@@ -363,14 +364,14 @@ function playGame() {
         playOptions.hidden = true
         roundWinner = true
         gameInfo.hidden = true
-        gameText.style.fontSize = '4vh'
+        mainAudio.src = "./audio/you-lose.mp3"
       }
       else {
         gameText.innerText = `It's a tie! By the rules of Magic Tourney, nobody wins!`
         playOptions.hidden = true
         gameInfo.hidden = true
-        gameText.style.fontSize = '4vh'
         roundWinner = true
+        mainAudio.src = "./audio/you-lose.mp3"
       }
     }
 }
