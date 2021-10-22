@@ -191,13 +191,14 @@ function renderGame() {
   else {
     setDarkMode()
   }
-
+  
 }
 
 function renderMove(char, enemy, moveId) {
   if (moveId === 'standard-att') {
     char.currentAp -= char.standardAttack.apCost
     if (enemy.shield === true) {
+      gameText.style.fontSize = '3vh'
       enemy.shield = false
       reducedDamage = char.standardAttack.damage - (char.standardAttack.damage * enemy.defense.damageReduction)
       enemy.currentHp -= reducedDamage
@@ -205,6 +206,7 @@ function renderMove(char, enemy, moveId) {
 
     }
     else {
+      gameText.style.fontSize = '3vh'
       enemy.currentHp -= char.standardAttack.damage
       gameText.innerText = `${char.standardAttack.description} dealing ${char.standardAttack.damage} damage.`
     }
@@ -212,6 +214,7 @@ function renderMove(char, enemy, moveId) {
   }
 
   else if (moveId === 'defense') {
+    gameText.style.fontSize = '3vh'
     char.currentAp -= char.defense.apCost
     char.shield = true
     gameText.innerText = `${char.defense.description}`
@@ -219,6 +222,7 @@ function renderMove(char, enemy, moveId) {
   }
 
   else if (moveId === 'special-att') {
+      gameText.style.fontSize = '3vh'
       char.currentAp -= char.specialAttack.apCost
       char.specialAttack.effect(char)
       gameText.innerText = `${char.specialAttack.description}`
@@ -231,9 +235,11 @@ function renderMove(char, enemy, moveId) {
       enemy.shield = false
       reducedDamage = char.ultimate.damage - (char.ultimate.damage * enemy.defense.damageReduction)
       enemy.currentHp -= reducedDamage
+      gameText.style.fontSize = '2.5vh'
       gameText.innerText = `${char.ultimate.description}. Defences reduce the impact to ${reducedDamage} damage.`
     }
     else {
+      gameText.style.fontSize = '2.5vh'
       enemy.currentHp -= char.ultimate.damage
       gameText.innerText = `${char.ultimate.description} dealing ${char.ultimate.damage} damage.`
     }
@@ -334,44 +340,43 @@ function playGame() {
     
 }
 
-  function getRoundWinner() {
-    if (selectedCharacter.currentHp <= 0) {
-      gameText.innerText = `The ${selectedBoss.name} is victorious! Try again in the next tourney!`
-      roundWinner = true
-      playOptions.hidden = true
-      gameInfo.hidden = true
-      mainAudio.src = "./audio/you-lose.mp3"
-    }
-    else if (selectedBoss.currentHp <= 0) {
-      gameText.innerText = `The ${selectedCharacter.name} prevails, defeating ${selectedBoss.name}`
+function getRoundWinner() {
+  if (selectedCharacter.currentHp <= 0) {
+    gameText.innerText = `The ${selectedBoss.name} is victorious! Try again in the next tourney!`
+    roundWinner = true
+    playOptions.hidden = true
+    gameInfo.hidden = true
+    mainAudio.src = "./audio/you-lose.mp3"
+  }
+  else if (selectedBoss.currentHp <= 0) {
+    gameText.innerText = `The ${selectedCharacter.name} prevails, defeating ${selectedBoss.name}`
+    roundWinner = true
+    playOptions.hidden = true
+    gameInfo.hidden = true
+    mainAudio.src = "./audio/victory.mp3"
+
+  }
+  else if (turn > 10) {
+    if (selectedCharacter.currentHp > selectedBoss.currentHp) {
+      gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP wins!`
       roundWinner = true
       playOptions.hidden = true
       gameInfo.hidden = true
       mainAudio.src = "./audio/victory.mp3"
-
     }
-    else if (turn > 10) {
-      if (selectedCharacter.currentHp > selectedBoss.currentHp) {
-        gameText.innerText = `After 10 rounds, the ${selectedCharacter.name} prevails! The contestant with the highest HP wins!`
-        roundWinner = true
-        playOptions.hidden = true
-        gameInfo.hidden = true
-        mainAudio.src = "./audio/victory.mp3"
-        
-      }
-      else if (selectedCharacter.currentHp < selectedBoss.currentHp) {
-        gameText.innerText = `After 10 rounds, the ${selectedBoss.name} is victorious! Try again in the next tourney!`
-        playOptions.hidden = true
-        roundWinner = true
-        gameInfo.hidden = true
-        mainAudio.src = "./audio/you-lose.mp3"
-      }
-      else {
-        gameText.innerText = `It's a tie! By the rules of Magic Tourney, nobody wins!`
-        playOptions.hidden = true
-        gameInfo.hidden = true
-        roundWinner = true
-        mainAudio.src = "./audio/you-lose.mp3"
+    else if (selectedCharacter.currentHp < selectedBoss.currentHp) {
+      gameText.innerText = `After 10 rounds, the ${selectedBoss.name} is victorious! Try again in the next tourney!`
+      playOptions.hidden = true
+      roundWinner = true
+      gameInfo.hidden = true
+      mainAudio.src = "./audio/you-lose.mp3"
+    }
+    else {
+      gameText.innerText = `It's a tie! By the rules of Magic Tourney, nobody wins!`
+      playOptions.hidden = true
+      gameInfo.hidden = true
+      roundWinner = true
+      mainAudio.src = "./audio/you-lose.mp3"
       }
     }
 }
