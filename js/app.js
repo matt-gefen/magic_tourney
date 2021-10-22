@@ -128,7 +128,7 @@ function init() {
   charName.hidden = true
   gameInfo.hidden = false
   playOptions.hidden = false
-  mode = 'dark'
+  // mode = 'dark'
 }
 
 function startClick() {
